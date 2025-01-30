@@ -1,5 +1,5 @@
 use wasm_bindgen::prelude::*;
-use web_sys::*;
+use web_sys::{window, Document, Element};
 #[macro_use]
 mod util;
 
@@ -13,7 +13,18 @@ pub async fn main() {
 
 #[wasm_bindgen]
 pub fn change_text(new_text: &str) {
-    let window = window().expect("no window found");
+    let window = web_sys::window().unwrap_or_else(|| {
+        log!("no window found");
+        panic!()
+    });
+    let document: web_sys::Document = window.document().unwrap_or_else(|| {
+        log!("no document found");
+        panic!()
+    });
+
+    if let Some(element) = document.query_selector(".detailsActionScroll .details-log-message .ng-binding").unwrap() {
+        element.set_inner_html(new_text);
+    }
 }
 
 
