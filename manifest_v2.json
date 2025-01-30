@@ -1,0 +1,18 @@
+{
+    "name" : "amazing-extension",
+    "version" : "1.0",
+    "description" : "amazing-extension",
+    "permissions": [],
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": [
+                "amazing_extension.js", "run_wasm.js"
+            ]
+        }
+    ],
+    "web_accessible_resources": [
+        "amazing_extension_bg.wasm"
+    ],
+    "manifest_version": 2
+}
