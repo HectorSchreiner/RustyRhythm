@@ -1,38 +1,58 @@
-# LogRythm Message Formatter
-**Ruxamat**™ (*Name is Work In Progress*), is a formatter for LogRythm's WebConsole Platform. It runs as a chrome-extension, and reformats the LogMessage box, into something a bit prettier and easier for the eyes. It can reformat some of the log messages, and also highligt important text ex. Usernames and IP adresses. It is written in Rust and WebAssembly.
-# Installation
-In order to run the chrome extension, you need to add it to your extensions folder. You can do that by going to **Extensions -> Manage Extensions** -> **Enable Developer Mode** (*Click the Button in the Upper Right Corner*) And load the `pkg` folder by pressing the **Load Unpacked** button.
+# 🚀 LogRhythm Message Formatter
+### **Ruxamat™** *(Name is a Work in Progress)*
 
+Ruxamat™ is a Chrome extension that enhances LogRhythm's WebConsole platform by reformatting log messages into a more readable and visually appealing format. It highlights important text—such as **usernames and IP addresses**—and restructures log messages for improved clarity.
 
-## Install tools
-You need `Rustup` installed on your machine (Install Guide Here: https://www.rust-lang.org/tools/install).
-Or you can run the following command:
-```
+🔧 **Built with:** Rust 🦀 + WebAssembly ⚡
+
+---
+
+## 📥 Installation
+### **Add the Extension to Chrome**
+1. Open Chrome and navigate to:
+   **Extensions → Manage Extensions**
+2. **Enable Developer Mode** (toggle the button in the upper-right corner).
+3. Click **Load Unpacked** and select the `pkg` folder.
+
+---
+
+## 🛠 Install Dependencies
+
+You'll need `Rustup` installed on your machine. Install it using:
+
+```sh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
-You also need to install the following with cargo.
+🔗 Rust Installation Guide
+
+Then, install the required tools:
 ```sh
 cargo install cargo-generate
 cargo install wasm-pack
 ```
 
-## Compile the extension
+## ⚙️ Compile the Extension
 
-You cannot use `cargo build` to compile your crate. Use the `build.sh` script instead:
-```sh
+Instead of using cargo build, run the provided build script:
+```
 sh build.sh
 ```
-Once compiled, the target files are ready to be used in the `pkg` folder. And this is the folder you import as the extension.
+Once compiled, your extension files will be available in the `pkg` folder. This is the folder you need to import into Chrome.
 
-# How To Use
-Install the extension with the above steps. Once the extension is running in the browser, everything should work. The features can be editted from a config file, and toggled on and off by clicking the button in the extensions dropdown menu.
+# 🚀 How to Use
 
-# Features
-- **Highlighting**: Highlights important keywords such as USERNAMES, ADDRESSES...
-- **Formatting**: Format the text, by creating spacing, and newlines. Also remove empty fields for better calrity.
-- **Keyboard Shortcuts**: Might be implemented.
+  1. Install the extension using the steps above.
+  2. The extension will automatically enhance the LogMessage box in the WebConsole.
+  3. Configure features via the config file.
+  4. Toggle features on/off from the extension dropdown menu.
 
-# Contributions
-Feel free to contribute to the project or entirely rewrite it if you dont feel like programming in rust.
+# ✨ Features
 
-**Created by**: *Hector Schreiner Schousbo*
+  ✅ **Highlighting:** Automatically highlights important data like usernames and IP addresses.
+  ✅ **Smart Formatting:** Improves readability by adjusting spacing, adding newlines, and removing empty fields.
+  ✅ **Keyboard Shortcuts:** (*Planned feature!*)
+
+# 💡 Contributions
+Contributions are welcome! If you prefer another language over Rust, feel free to rewrite it...
+
+**Created by:** *Hector Schreiner Schousbo*
