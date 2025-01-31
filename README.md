@@ -6,7 +6,7 @@ In order to run the chrome extension, you need to add it to your extensions fold
 You might need to recompile the rust code with WASM (commands down below).
 
 ## Install tools
-You need **Rust** installed on your machine (Install Guide Here: https://www.rust-lang.org/tools/install).
+You need `Rustup` installed on your machine (Install Guide Here: https://www.rust-lang.org/tools/install).
 Or you can run the following command:
 ```
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -26,9 +26,11 @@ sh build.sh
 Once compiled, the target files are ready to be used in the `pkg` folder. And this is the folder you import as the extension.
 
 # How To Use
-Install the extension with the above steps. Once the extension is running in the browser, everything should work. The features can be editted from a config file, and toggled on and off by clicking the button in the extensions dropdown menu
+Install the extension with the above steps. Once the extension is running in the browser, everything should work. The features can be editted from a config file, and toggled on and off by clicking the button in the extensions dropdown menu.
 
 # Features
-- **Highlighting**: Highligths important keywords
-- **Formatting**:
+- **Highlighting**: Highligths **important** keywords.
+- **Formatting**: Format the text, by creating spacing, and newlines.
+- **Keyboard Shortcuts**: Might be implemented.
+
 # Contributions
