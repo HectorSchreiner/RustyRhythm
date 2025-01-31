@@ -34,6 +34,6 @@ Install the extension with the above steps. Once the extension is running in the
 - **Keyboard Shortcuts**: Might be implemented.
 
 # Contributions
-Feel free to contribute to the Project or entirely rewrite it if you dont feel like writing in rust.
+Feel free to contribute to the project or entirely rewrite it if you dont feel like programming in rust.
 
 **Created by**: *Hector Schreiner Schousbo*
