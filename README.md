@@ -54,3 +54,15 @@ Once compiled, your extension files will be available in the `pkg` folder. This 
 Contributions are welcome! If you prefer another language over Rust, feel free to rewrite it...
 
 **Created by:** *Hector Schreiner Schousbo*
+
+# ⚙️ Config Example
+```json
+{
+  configuration: test
+  {
+    name: user
+    ip: 192.168.0.1
+  }
+
+}
+```
