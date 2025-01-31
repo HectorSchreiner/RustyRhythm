@@ -8,43 +8,21 @@ You might need to recompile the rust code with WASM (commands down below).
 Compile the program yourself with the following commands:
 
 ## Install tools
-You need **Rust** installed on your machine (Install Guide Here: https://www.rust-lang.org/tools/install)
+You need **Rust** installed on your machine (Install Guide Here: https://www.rust-lang.org/tools/install).
 Or you can run the following command:
 ```
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
-
-*Cargo Installations*:
+You also need to install the following with cargo.
 ```sh
 cargo install cargo-generate
 cargo install wasm-pack
 ```
 
-### Windows
-```
-Cargo compile everything
-```
-
-### Linux
-```
-Cargo compile everything
-```
-
-
 ## Compile the extension
 
 You cannot use `cargo build` to compile your crate. Use the `build.sh` script instead:
-
 ```sh
 sh build.sh
 ```
-
-Once compiled, the target files are ready to be used in the `pkg` folder.
-
-## Test your program
-
-Web browsers allow developpers to test web extensions before publishment.
-See your browser's specific instructions to do that.
-After build, the `manifest.json` file is located in the `pkg` folder.
-By default, your extension will run on example.com and have no other permissions.
-You should want to modify the manifest (see [the doc](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json)).
+Once compiled, the target files are ready to be used in the `pkg` folder. And this is the folder you import as the extension.
