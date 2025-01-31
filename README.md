@@ -29,8 +29,8 @@ Once compiled, the target files are ready to be used in the `pkg` folder. And th
 Install the extension with the above steps. Once the extension is running in the browser, everything should work. The features can be editted from a config file, and toggled on and off by clicking the button in the extensions dropdown menu.
 
 # Features
-- **Highlighting**: Highligths **important** keywords.
-- **Formatting**: Format the text, by creating spacing, and newlines.
+- **Highlighting**: Highlights important keywords such as USERNAMES, ADDRESSES...
+- **Formatting**: Format the text, by creating spacing, and newlines. Also remove empty fields for better calrity.
 - **Keyboard Shortcuts**: Might be implemented.
 
 # Contributions
