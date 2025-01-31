@@ -25,6 +25,10 @@ sh build.sh
 ```
 Once compiled, the target files are ready to be used in the `pkg` folder. And this is the folder you import as the extension.
 
-# Features
+# How To Use
+Install the extension with the above steps. Once the extension is running in the browser, everything should work. The features can be editted from a config file, and toggled on and off by clicking the button in the extensions dropdown menu
 
+# Features
+- **Highlighting**: Highligths important keywords
+- **Formatting**:
 # Contributions
