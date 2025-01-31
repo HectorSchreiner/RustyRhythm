@@ -11,9 +11,8 @@ impl LogMessageParser {
     }
 
     pub fn format(&self) {
-        &self.json_format();
-        &self.highlight_elements();
-        // return the text field
+        self.json_format();
+        self.highlight_elements();
     }
 
     pub fn get_text(&self) -> String {
