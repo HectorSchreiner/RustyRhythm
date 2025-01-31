@@ -1,8 +1,12 @@
-use util::{get_document, replace_text};
+use format::*;
+use regex::Regex;
+use serde_json::Value;
+use util::get_document;
 use wasm_bindgen::prelude::*;
 use web_sys::{window, Document, Element};
 #[macro_use]
 mod util;
+mod format;
 
 #[wasm_bindgen(start)]
 pub async fn main() {
@@ -12,7 +16,7 @@ pub async fn main() {
 }
 
 #[wasm_bindgen]
-pub fn replace_text(selector: &str, new_text: &str) {
+pub fn parse_text(selector: &str, new_text: &str) {
     let document = get_document();
 
     if let Some(element) = document.query_selector(selector).unwrap() {
