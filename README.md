@@ -23,7 +23,8 @@ You'll need `Rustup` installed on your machine. Install it using:
 ```sh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
-🔗 Rust Installation Guide
+
+[🔗 Rust Installation Guide](https://www.rust-lang.org/tools/install)
 
 Then, install the required tools:
 ```sh
@@ -32,22 +33,20 @@ cargo install wasm-pack
 ```
 
 ## ⚙️ Compile the Extension
-
-Instead of using cargo build, run the provided build script:
+Instead of using `cargo build`, run the provided build script:
 ```
 sh build.sh
 ```
 Once compiled, your extension files will be available in the `pkg` folder. This is the folder you need to import into Chrome.
 
 # 🚀 How to Use
-
-  1. Install the extension using the steps above.
-  2. The extension will automatically enhance the LogMessage box in the WebConsole.
-  3. Configure features via the config file.
-  4. Toggle features on/off from the extension dropdown menu.
+1. Install the extension using the steps above.
+2. The extension will automatically enhance the LogMessage box in the WebConsole.
+3. Configure features via the config file.
+4. Toggle features on/off from the extension dropdown menu.
 
 # ✨ Features
-- ✅ **Highlighting:** Automatically highlights important data like usernames and IP addresses.
+- ✅ **Highlighting:** Automatically highlights important data like usernames and IP-Addresses.
 - ✅ **Smart Formatting:** Improves readability by adjusting spacing, adding newlines, and removing empty fields.
 - ✅ **Keyboard Shortcuts:** (*Planned feature!*)
 
