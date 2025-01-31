@@ -47,10 +47,9 @@ Once compiled, your extension files will be available in the `pkg` folder. This 
   4. Toggle features on/off from the extension dropdown menu.
 
 # ✨ Features
-
-✅ **Highlighting:** Automatically highlights important data like usernames and IP addresses.
-✅ **Smart Formatting:** Improves readability by adjusting spacing, adding newlines, and removing empty fields.
-✅ **Keyboard Shortcuts:** (*Planned feature!*)
+- ✅ **Highlighting:** Automatically highlights important data like usernames and IP addresses.
+- ✅ **Smart Formatting:** Improves readability by adjusting spacing, adding newlines, and removing empty fields.
+- ✅ **Keyboard Shortcuts:** (*Planned feature!*)
 
 # 💡 Contributions
 Contributions are welcome! If you prefer another language over Rust, feel free to rewrite it...
