@@ -56,7 +56,7 @@ Contributions are welcome! If you prefer another language over Rust, feel free t
 **Created by:** *Hector Schreiner Schousbo*
 
 # ⚙️ Config Example
-```json
+```
 {
   configuration: test
   {
