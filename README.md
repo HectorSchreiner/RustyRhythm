@@ -1,11 +1,9 @@
 # LogRythm Message Formatter
-**Ruxamat**™ (*Name is Work In Progress*), is a formatter for LogRythm's WebConsole Platform. It runs as a chrome-extension, and reformats the LogMessage box, into something a bit prettier and easier for the eyes. It is written in Rust and WebAssembly.
+**Ruxamat**™ (*Name is Work In Progress*), is a formatter for LogRythm's WebConsole Platform. It runs as a chrome-extension, and reformats the LogMessage box, into something a bit prettier and easier for the eyes. It can reformat some of the log messages, and also highligt important text ex. Usernames and IP adresses. It is written in Rust and WebAssembly.
 # Installation
 In order to run the chrome extension, you need to add it to your extensions folder. You can do that by going to **Extensions -> Manage Extensions** -> **Enable Developer Mode** (*Click the Button in the Upper Right Corner*) And load the folder by pressing the **Load Unpacked** button.
 
 You might need to recompile the rust code with WASM (commands down below).
-
-Compile the program yourself with the following commands:
 
 ## Install tools
 You need **Rust** installed on your machine (Install Guide Here: https://www.rust-lang.org/tools/install).
@@ -26,3 +24,7 @@ You cannot use `cargo build` to compile your crate. Use the `build.sh` script in
 sh build.sh
 ```
 Once compiled, the target files are ready to be used in the `pkg` folder. And this is the folder you import as the extension.
+
+# Features
+
+# Contributions

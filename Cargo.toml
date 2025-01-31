@@ -15,10 +15,7 @@ console_error_panic_hook = "0.1.6"
 
 [dependencies.web-sys]
 version = "0.3"
-features = [
-    "console",
-    "Window",
-    "Document",
-    "Element", 
-    "HtmlElement",
-]
+features = ["console", "Window", "Document", "Element", "HtmlElement"]
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3.0"
