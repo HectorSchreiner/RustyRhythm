@@ -56,11 +56,17 @@ Contributions are welcome! If you want to conribute with some changes, you can f
 **Created by:** *Hector Schreiner Schousbo*
 
 # ⚙️ Config Example
-```
+```json
 {
-  configuration: test,
-  {
-    something: example
-  },
+    "highlight_rules": [
+        {
+            "word": "error",
+            "style": "color:red;font-weight:bold;"
+        },
+        {
+            "word": "warning",
+            "style": "color:orange;font-weight:bold;"
+        }
+    ]
 }
 ```
