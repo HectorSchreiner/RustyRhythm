@@ -24,7 +24,7 @@ You'll need `Rustup` installed on your machine. Install it using:
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-[🔗 Rust Installation Guide](https://www.rust-lang.org/tools/install)
+🔗[Rust Installation Guide](https://www.rust-lang.org/tools/install)
 
 Then, install the required tools:
 ```sh
@@ -58,11 +58,9 @@ Contributions are welcome! If you prefer another language over Rust, feel free t
 # ⚙️ Config Example
 ```
 {
-  configuration: test
+  configuration: test,
   {
-    name: user
-    ip: 192.168.0.1
-  }
-
+    something: example
+  },
 }
 ```
