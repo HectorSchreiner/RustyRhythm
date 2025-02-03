@@ -36,8 +36,8 @@ if [ "$manifest_version" = "v3" ] || [ "$manifest_version" = "3" ]; then
 else if [ "$manifest_version" = "v2" ] || [ "$manifest_version" = "2" ]; then
   cp manifest_v2.json pkg/manifest.json
 else
-  echo "Packaging with manifest version v2. Pass --manifest-version=v3 to package with manifest version 3."
-  cp manifest_v2.json pkg/manifest.json
+  echo "Packaging with manifest version v3. Pass --manifest-version=v2 to package with manifest version 2."
+  cp manifest_v3.json pkg/manifest.json
   fi
 fi
 
