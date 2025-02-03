@@ -51,7 +51,7 @@ Once compiled, your extension files will be available in the `pkg` folder. This 
 - ✅ **Keyboard Shortcuts:** (*Planned feature!*)
 
 # 💡 Contributions
-Contributions are welcome! If you want to conribute with some changes, you cna fork the repository, and submit a pull request. If you prefer another language over Rust, feel free to rewrite it...
+Contributions are welcome! If you want to conribute with some changes, you can fork the repository, and submit a pull request. If you prefer another language over Rust, feel free to rewrite it...
 
 **Created by:** *Hector Schreiner Schousbo*
 
