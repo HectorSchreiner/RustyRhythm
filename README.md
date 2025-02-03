@@ -18,7 +18,7 @@ Ruxamat [Rusty Exabeam Formatter] is a Chrome extension that enhances LogRhythm'
 
 ## 🛠 Install Dependencies
 
-You'll need `Rustup` installed on your machine. Install it using:
+If you want to compile it yourself, you'll need `Rustup` installed on your machine. Install it using:
 
 ```sh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
