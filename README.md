@@ -49,11 +49,7 @@ Once compiled, your extension files will be available in the `pkg` folder. This 
 - ✅ **Highlighting:** Automatically highlights important data like usernames and IP-Addresses.
 - ✅ **Smart Formatting:** Improves readability by adjusting spacing, adding newlines, and removing empty fields.
 - ✅ **Keyboard Shortcuts:** (*Planned feature!*)
-
-# 💡 Contributions
-Contributions are welcome! If you want to conribute with some changes, you can fork the repository, and submit a pull request. If you prefer another language over Rust, feel free to rewrite it...
-
-**Created by:** *Hector Schreiner Schousbo*
+- 🔲 **Something else:**
 
 # ⚙️ Config Example
 ```json
@@ -70,3 +66,9 @@ Contributions are welcome! If you want to conribute with some changes, you can f
     ]
 }
 ```
+
+# 💡 Contributions
+Contributions are welcome! If you want to conribute with some changes, you can fork the repository, and submit a pull request. If you prefer another language over Rust, feel free to rewrite it...
+
+**Created by:** *Hector Schreiner Schousbo*
+
