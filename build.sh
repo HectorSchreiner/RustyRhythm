@@ -1,7 +1,7 @@
 #!/bin/sh
 
-command -v cargo >/dev/null 2>&1 || { echo >&2 "Installing cargo..."; curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh; }
-command -v wasm-pack >/dev/null 2>&1 || { echo >&2 "Installing wasm-pack..."; cargo install wasm-pack; }
+# command -v cargo >/dev/null 2>&1 || { echo >&2 "Installing cargo..."; curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh; }
+# command -v wasm-pack >/dev/null 2>&1 || { echo >&2 "Installing wasm-pack..."; cargo install wasm-pack; }
 
 rm -rf pkg
 
@@ -29,6 +29,10 @@ if [ "$release" = true ]; then
 else
   wasm-pack build --target=no-modules --dev || exit 1
 fi
+
+# Copy config.json to pkg
+cp config.json pkg/config.json
+echo "Copied config.json to /pkg"
 
 # Copy manifest.json to pkg
 if [ "$manifest_version" = "v3" ] || [ "$manifest_version" = "3" ]; then
