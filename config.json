@@ -1,0 +1,36 @@
+{
+  "highlight_rules": [
+    {
+      "type": "exact",
+      "pattern": "red",
+      "style": "color:red;font-weight:bold;"
+    },
+    {
+      "type": "regex",
+      "pattern": "\\b{?}",
+      "style": "color:red;font-weight:bold;"
+    }
+  ],
+  "deletion_rules": [
+    {
+      "type": "exact",
+      "patter": "DEBUG"
+    },
+    {
+      "type": "regex",
+      "pattern": "<\\w> = <>"
+    }
+  ],
+  "replacement_rules": [
+    {
+      "type": "exact",
+      "pattern": "red",
+      "replacement": "blue"
+    },
+    {
+      "type": "regex",
+      "pattern": "\\bsigma\\b",
+      "replacement": "boy"
+    }
+  ]
+}
