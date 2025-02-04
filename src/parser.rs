@@ -28,7 +28,6 @@ impl LogMessageParser {
     }
 
     fn highlight_format(&mut self) {
-
         let text_field = &mut self.text_field;
 
         for rule in &self.config.highlight_rules {
@@ -47,7 +46,7 @@ impl LogMessageParser {
             match rule.rule_type.as_str() {
                 // Handle exact match replacement
                 "exact" => {
-                    *text_field = text_field.replace(&rule.pattern, &replacement.replace("$0", &rule.pattern));
+                    text_field.replace(&rule.pattern, &replacement.replace("$0", &rule.pattern));
                 }
                 // Handle regex match replacement
                 "regex" => {
@@ -59,6 +58,24 @@ impl LogMessageParser {
             }
         }
     }
+
+    fn deletetion_format(&mut self) {
+        let text_field = &mut self.text_field;
+
+        for rule in &self.config.deletion_rules {
+            match rule.rule_type.as_str() {
+                "exact" => {
+                    text_field.replace(&rule.pattern, "to");
+                }
+                "regex" => {
+                    if let Some(regex) = Regex::new(&rule.pattern) {
+                        *text_field = regex.replace_all(text_field, )
+                    }
+                }
+                _ => continue,
+            }
+        }
+    } 
 
     fn json_format(&mut self) {
         let re = Regex::new(r"\{.*?\}").unwrap(); // Matches JSON-like content within {}
