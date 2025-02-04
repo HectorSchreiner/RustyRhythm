@@ -7,8 +7,8 @@ RustyRhythm is a Chrome extension that enhances LogRhythm's WebConsole platform 
 
 ---
 
-## 📥 Installation
-### **Add the Extension to Chrome**
+# 📥 Installation
+## **Add the Extension to Chrome**
 1. Open Chrome and navigate to:
    **Extensions → Manage Extensions**
 2. **Enable Developer Mode** (toggle the button in the upper-right corner).
