@@ -1,16 +1,24 @@
+use std::fs::File;
+
+use js_sys::JSON;
 use regex::Regex;
 use serde_json::Value;
 
 pub struct LogMessageParser {
     pub text_field: String,
+    pub config: Value,
 }
 
 impl LogMessageParser {
     pub fn new(text_field: String) -> Self {
-        Self { text_field }
+        let string =
+            std::fs::read_to_string("config.json").expect("Could not read the config file");
+        let config = serde_json::from_str(&string).expect("Could not read JSON");
+
+        Self { text_field, config }
     }
 
-    pub fn format(&self) {
+    pub fn format(&mut self) {
         self.json_format();
         self.highlight_elements();
     }
@@ -19,8 +27,9 @@ impl LogMessageParser {
         self.text_field.clone()
     }
 
-    fn highlight_elements(&self) {
+    fn highlight_elements(&mut self) {
         // regex to capture all ips.
+
         let ip_regex = Regex::new(r"\b(?:\d{1,3}\.){3}\d{1,3}\b").unwrap();
 
         // skal i capturegroup index 0, da vi kun har 1 capture group i ovenstående regex string.
@@ -33,10 +42,15 @@ impl LogMessageParser {
         });
     }
 
-    fn json_format(&self) {
-        if let Ok(json) = serde_json::from_str::<Value>(&self.text_field) {
-            // hvis json parsningen fejler, returnerer den bare inputtet som string.
-            serde_json::to_string_pretty(&json).unwrap_or(self.text_field.to_string());
-        }
+    fn json_format(&mut self) {
+        let re = Regex::new(r"\{.*?\}").unwrap(); // Matches JSON-like content within {}
+
+        self.text_field = re
+            .replace_all(&self.text_field, |caps: &regex::Captures| {
+                serde_json::from_str::<Value>(&caps[0])
+                    .and_then(|json| serde_json::to_string_pretty(&json))
+                    .unwrap_or_else(|_| caps[0].to_string())
+            })
+            .to_string();
     }
 }
