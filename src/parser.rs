@@ -1,46 +1,63 @@
-use std::fs::File;
+use std::{fs::File};
 
 use js_sys::JSON;
 use regex::Regex;
 use serde_json::Value;
 
+use crate::config::Config;
+
 pub struct LogMessageParser {
     pub text_field: String,
+    config: Config
 }
 
 impl LogMessageParser {
     pub fn new(text_field: String) -> Self {
-        let string =
-            std::fs::read_to_string("config.json").expect("Could not read the config file");
-        let config: Value = serde_json::from_str(&string).expect("Could not read JSON");
+        let config = Config::load_config("config.json").unwrap();
 
-        Self { text_field }
+        Self { text_field, config }
     }
 
     pub fn format(&mut self) {
         self.json_format();
-        self.highlight_elements();
+        self.highlight_format();
     }
 
     pub fn get_text(&self) -> String {
         self.text_field.clone()
     }
 
-    fn highlight_elements(&mut self) {
+    fn highlight_format(&mut self) {
 
-        
-        // regex to capture all ips.
+        let text_field = &mut self.text_field;
 
-        let ip_regex = Regex::new(r"\b(?:\d{1,3}\.){3}\d{1,3}\b").unwrap();
+        for rule in &self.config.highlight_rules {
+            let style = rule
+                .style
+                .as_deref()
+                // default styling
+                .unwrap_or("color:white;font-weight:normal;");
 
-        // skal i capturegroup index 0, da vi kun har 1 capture group i ovenstående regex string.
-        // Skal måske ændres hvis der laves nogle flere regex strings, som skal formatteres.
-        ip_regex.replace_all(&self.text_field, |captures: &regex::Captures| {
-            format!(
-                r#"<span style="color:blue;font-weight:bold;">{}</span>"#,
-                &captures[0]
-            )
-        });
+            // capture group 0, entire match
+            let replacement = format!(
+                r#"<span style="{}">{}</span>"#,
+                style, "$0"
+            );
+
+            match rule.rule_type.as_str() {
+                // Handle exact match replacement
+                "exact" => {
+                    *text_field = text_field.replace(&rule.pattern, &replacement.replace("$0", &rule.pattern));
+                }
+                // Handle regex match replacement
+                "regex" => {
+                    if let Ok(regex) = Regex::new(&rule.pattern) {
+                        *text_field = regex.replace_all(text_field, replacement.as_str()).to_string();
+                    }
+                }
+                _ => continue, // Ignore invalid rule types
+            }
+        }
     }
 
     fn json_format(&mut self) {

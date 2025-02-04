@@ -1,3 +1,4 @@
+use config::Config;
 use parser::*;
 use regex::Regex;
 use serde_json::Value;
@@ -19,6 +20,22 @@ pub async fn main() {
     let window = window().unwrap();
     let document = window.document().unwrap();
     let body = document.body().unwrap();
+
+    match Config::load_config("config.json") {
+        Ok(config) => {
+            println!("Loaded Config: {:?}", config);
+
+            // Example: Print highlight rules
+            println!("\nHighlight Rules:");
+            for rule in &config.highlight_rules {
+                println!(
+                    "- Type: {:?}, Pattern: {}, Style: {:?}",
+                    rule.rule_type, rule.pattern, rule.style
+                );
+            }
+        }
+        Err(e) => eprintln!("Error loading config: {}", e),
+    }
 }
 
 #[wasm_bindgen]
