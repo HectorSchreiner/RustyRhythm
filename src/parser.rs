@@ -4,20 +4,17 @@ use js_sys::JSON;
 use regex::Regex;
 use serde_json::Value;
 
-use crate::config::load_config;
-
 pub struct LogMessageParser {
-    pub config: Config,
+    pub text_field: String,
 }
 
 impl LogMessageParser {
     pub fn new(text_field: String) -> Self {
-        let config = load_config();
         let string =
             std::fs::read_to_string("config.json").expect("Could not read the config file");
-        let config = serde_json::from_str(&string).expect("Could not read JSON");
+        let config: Value = serde_json::from_str(&string).expect("Could not read JSON");
 
-        Self { config }
+        Self { text_field }
     }
 
     pub fn format(&mut self) {
@@ -30,6 +27,8 @@ impl LogMessageParser {
     }
 
     fn highlight_elements(&mut self) {
+
+        
         // regex to capture all ips.
 
         let ip_regex = Regex::new(r"\b(?:\d{1,3}\.){3}\d{1,3}\b").unwrap();
