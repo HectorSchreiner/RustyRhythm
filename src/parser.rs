@@ -4,18 +4,20 @@ use js_sys::JSON;
 use regex::Regex;
 use serde_json::Value;
 
+use crate::config::load_config;
+
 pub struct LogMessageParser {
-    pub text_field: String,
-    pub config: Value,
+    pub config: Config,
 }
 
 impl LogMessageParser {
     pub fn new(text_field: String) -> Self {
+        let config = load_config();
         let string =
             std::fs::read_to_string("config.json").expect("Could not read the config file");
         let config = serde_json::from_str(&string).expect("Could not read JSON");
 
-        Self { text_field, config }
+        Self { config }
     }
 
     pub fn format(&mut self) {
