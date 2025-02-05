@@ -14,7 +14,6 @@ pub struct LogMessageParser {
 impl LogMessageParser {
     pub fn new(text_field: String) -> Self {
         let config = Config::load_config("config.json").unwrap();
-
         Self { text_field, config }
     }
 
