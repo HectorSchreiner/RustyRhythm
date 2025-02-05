@@ -28,7 +28,6 @@ The highlight_rules section can hold the following parameters:
 the syntax "type" can be either an exact match (a string) or a regex match (a regex string).  
 ```
 "type": "exact"
-// or
 "type": "regex"
 ```
 
