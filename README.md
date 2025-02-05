@@ -54,21 +54,45 @@ Once compiled, your extension files will be available in the `pkg` folder. This 
 # ⚙️ Config Example
 ```json
 {
-    "highlight_rules": [
-        {
-            "word": "error",
-            "style": "color:red;font-weight:bold;"
-        },
-        {
-            "word": "warning",
-            "style": "color:orange;font-weight:bold;"
-        }
-    ]
+  "highlight_rules": [
+    {
+      "rule_type": "exact",
+      "pattern": "red",
+      "style": "color:red;font-weight:bold;"
+    },
+    {
+      "rule_type": "regex",
+      "pattern": "\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b",
+      "style": "color:red;font-weight:bold;"
+    }
+  ],
+  "deletion_rules": [
+    {
+      "rule_type": "exact",
+      "pattern": "DEBUG"
+    },
+    {
+      "rule_type": "regex",
+      "pattern": "<\\w> = <>"
+    }
+  ],
+  "change_rules": [
+    {
+      "rule_type": "exact",
+      "pattern": "red",
+      "replacement": "blue"
+    },
+    {
+      "rule_type": "regex",
+      "pattern": "\\bsigma\\b",
+      "replacement": "boy"
+    }
+  ]
 }
+
 ```
 
 # 💡 Contributions
 Contributions are welcome! If you want to conribute with some changes, you can fork the repository, and submit a pull request. If you prefer another language over Rust, feel free to rewrite it...
 
 **Created by:** *Hector Schreiner Schousbo*
-
