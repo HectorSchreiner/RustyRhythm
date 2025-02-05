@@ -25,14 +25,23 @@ Highlight rules specify which words or patterns should be highlighted in the log
 ]
 ```
 The highlight_rules section can hold the following parameters:
-the syntax "type" can be either an exact match (a string) or a regex match (a regex string).  
+- type
+- pattern
+- style
+
+**type:** This can be either an exact match (a string) or a regex match (a regex string):
 ```
 "type": "exact"
 "type": "regex"
 ```
 
-- pattern:
-- style: 
+**pattern:** This can be a regex or a string, this is defined by the type parameter.
+
+**style:** The CSS style to apply for highlighting the matched pattern. For example:
+
+
+
+
 ### 2. Deletion Rules
 
 ### 3. Change Rules
