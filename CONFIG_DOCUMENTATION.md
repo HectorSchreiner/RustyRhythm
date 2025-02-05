@@ -6,7 +6,7 @@ The `config.json` file consists of three main sections:
 1. Highlight Rules
 3. Deletion Rules
 4. Change Rules
-   
+
 ### 1. Highligt Rules
 Highlight rules specify which words or patterns should be highlighted in the log messages and the style to apply.
 ```json
@@ -24,6 +24,16 @@ Highlight rules specify which words or patterns should be highlighted in the log
     }
 ]
 ```
+The highlight_rules section can hold the following parameters:
+the syntax "type" can be either an exact match (a string) or a regex match (a regex string).  
+```
+"type": "exact"
+// or
+"type": "regex"
+```
+
+- pattern:
+- style: 
 ### 2. Deletion Rules
 
 ### 3. Change Rules
