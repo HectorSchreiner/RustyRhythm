@@ -44,7 +44,7 @@ Once compiled, your extension files will be available in the `pkg` folder. This 
 4. Toggle features on/off from the extension dropdown menu.
 
 # ✨ Features
-- ✅ **Highlighting:** Automatically highlights important data like usernames and IP-Addresses.
+- [x] **Highlighting:** Automatically highlights important data like usernames and IP-Addresses.
 - ✅ **Custom Deletion and Replacement Rules:** Delete certain patterns and words in the alarm text.
 - ✅ **JSON Reformatting:** Reformats Json fields in the alarmtext so it looks more visually appealing.
 - ✅ **Config file:** Configure the extension with an easy to configure `config.json` 
