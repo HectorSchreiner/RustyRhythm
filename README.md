@@ -45,10 +45,10 @@ Once compiled, your extension files will be available in the `pkg` folder. This 
 
 # ✨ Features
 - [x] **Highlighting:** Automatically highlights important data like usernames and IP-Addresses.
-- ✅ **Custom Deletion and Replacement Rules:** Delete certain patterns and words in the alarm text.
-- ✅ **JSON Reformatting:** Reformats Json fields in the alarmtext so it looks more visually appealing.
-- ✅ **Config file:** Configure the extension with an easy to configure `config.json` 
-- 🔲 **ON/OFF Toggle Keyboard Shortcut:** (*Planned feature!*)
+- [x] **Custom Deletion and Replacement Rules:** Delete certain patterns and words in the alarm text.
+- [x] **JSON Reformatting:** Reformats Json fields in the alarmtext so it looks more visually appealing.
+- [x] **Config file:** Configure the extension with an easy to configure `config.json` 
+- [ ] **ON/OFF Toggle Keyboard Shortcut:** (*Planned feature!*)
 
 # ⚙️ Config Example
 ```json
