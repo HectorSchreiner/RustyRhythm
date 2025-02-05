@@ -25,9 +25,12 @@ Highlight rules specify which words or patterns should be highlighted in the log
 ]
 ```
 Parameters:
-| | | 
-| - | - |
-| | |
+| Parameter   | Description                                                        |
+|-------------|--------------------------------------------------------------------|
+| **type**    | Specifies whether the pattern is an exact match (`"exact"`) or a regular expression (`"regex"`). |
+| **pattern** | The word or regex pattern to highlight, delete, or change.         |
+| **style**   | The CSS style to apply for highlighting the matched pattern.       |
+| **replacement** | The word or string to replace the matched pattern (for change rules). |
 
 
 
