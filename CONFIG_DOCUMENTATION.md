@@ -4,6 +4,10 @@ The `config.json` allows you to customize the behavior of the programs formatter
 # Structure
 The `config.json` file consists of three main sections:
 1. Highlight Rules
+3. Deletion Rules
+4. Change Rules
+   
+### 1. Highligt Rules
 Highlight rules specify which words or patterns should be highlighted in the log messages and the style to apply.
 ```json
 "highlight_rules": [
@@ -20,11 +24,6 @@ Highlight rules specify which words or patterns should be highlighted in the log
     }
 ]
 ```
-3. Deletion Rules
-4. Change Rules
-   
-### 1. Highligt Rules
-
 ### 2. Deletion Rules
 
 ### 3. Change Rules
