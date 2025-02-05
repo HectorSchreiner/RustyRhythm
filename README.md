@@ -51,7 +51,7 @@ Once compiled, your extension files will be available in the `pkg` folder. This 
 - [ ] **ON/OFF Toggle Keyboard Shortcut:** (*Planned feature!*)
 
 # ⚙️ Config Example
-Please read the [Documentation](https://github.com/HectorSchreiner/RustyRhythm/CONFIG_DOCUMENTATION.md) if you want to configure the configuration file.
+You can find more information by reading the [Documentation](https://github.com/HectorSchreiner/RustyRhythm/blob/master/CONFIG_DOCUMENTATION.md) 
 ```json
 {
   "highlight_rules": [
