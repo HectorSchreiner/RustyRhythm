@@ -24,7 +24,6 @@ Highlight rules specify which words or patterns should be highlighted in the log
     }
 ]
 ```
-Parameters:
 | Parameter   | Description                                                        |
 |-------------|--------------------------------------------------------------------|
 | **type**    | Specifies whether the pattern is an exact match (`"exact"`) or a regular expression (`"regex"`). |
@@ -34,8 +33,23 @@ Parameters:
 
 
 ### 2. Deletion Rules
+Deletion rules specify which words or patterns should be removed from the log messages.
 
-Parameters:
+**Example:**
+```json
+"deletion_rules": [
+    {
+        "type": "exact",
+        "pattern": "DEBUG"
+    },
+    {
+        // removes patterns like <Resolve_comment> = <>
+        "type": "regex",
+        "pattern": "<\\w+> = <>"
+    }
+]
+```
+
 | Parameter   | Description                                                        |
 |-------------|--------------------------------------------------------------------|
 | **type**    | Specifies whether the pattern is an exact match (`"exact"`) or a regular expression (`"regex"`). |
@@ -44,7 +58,6 @@ Parameters:
 
 ### 3. Change Rules
 
-Parameters:
 | Parameter   | Description                                                        |
 |-------------|--------------------------------------------------------------------|
 | **type**    | Specifies whether the pattern is an exact match (`"exact"`) or a regular expression (`"regex"`). |
