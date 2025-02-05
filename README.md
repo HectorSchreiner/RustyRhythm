@@ -47,9 +47,9 @@ Once compiled, your extension files will be available in the `pkg` folder. This 
 
 # ✨ Features
 - ✅ **Highlighting:** Automatically highlights important data like usernames and IP-Addresses.
-- ✅ **Smart Formatting:** Improves readability by adjusting spacing, adding newlines, and removing empty fields.
-- ✅ **Keyboard Shortcuts:** (*Planned feature!*)
-- 🔲 **Something else:**
+- ✅ **Custom Deletion and Replacement Rules:** Delete pointless words, either with a regex, or with a plaintext definition.
+- ✅ **Json Reformatting:** Reformats Json fields in the alarmtext. 
+- 🔲 **Keyboard Shortcuts:** (*Planned feature!*)
 
 # ⚙️ Config Example
 ```json
