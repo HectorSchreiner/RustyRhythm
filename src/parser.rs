@@ -1,4 +1,4 @@
-use std::{fs::File};
+use std::fs::File;
 
 use js_sys::JSON;
 use regex::Regex;
@@ -8,7 +8,7 @@ use crate::config::Config;
 
 pub struct LogMessageParser {
     pub text_field: String,
-    config: Config
+    config: Config,
 }
 
 impl LogMessageParser {
@@ -19,8 +19,12 @@ impl LogMessageParser {
     }
 
     pub fn format(&mut self) {
+        // order matters!
         self.json_format();
+        self.deletetion_format();
+        self.change_format();
         self.highlight_format();
+        // order matters!
     }
 
     pub fn get_text(&self) -> String {
@@ -38,20 +42,20 @@ impl LogMessageParser {
                 .unwrap_or("color:white;font-weight:normal;");
 
             // capture group 0, entire match
-            let replacement = format!(
-                r#"<span style="{}">{}</span>"#,
-                style, "$0"
-            );
+            let replacement = format!(r#"<span style="{}">{}</span>"#, style, "$0");
 
             match rule.rule_type.as_str() {
                 // Handle exact match replacement
                 "exact" => {
-                    text_field.replace(&rule.pattern, &replacement.replace("$0", &rule.pattern));
+                    *text_field = text_field
+                        .replace(&rule.pattern, &replacement.replace("$0", &rule.pattern));
                 }
                 // Handle regex match replacement
                 "regex" => {
                     if let Ok(regex) = Regex::new(&rule.pattern) {
-                        *text_field = regex.replace_all(text_field, replacement.as_str()).to_string();
+                        *text_field = regex
+                            .replace_all(text_field, replacement.as_str())
+                            .to_string();
                     }
                 }
                 _ => continue, // Ignore invalid rule types
@@ -63,19 +67,39 @@ impl LogMessageParser {
         let text_field = &mut self.text_field;
 
         for rule in &self.config.deletion_rules {
+            let empty = "";
             match rule.rule_type.as_str() {
                 "exact" => {
-                    text_field.replace(&rule.pattern, "to");
+                    *text_field = text_field.replace(&rule.pattern, empty);
                 }
                 "regex" => {
-                    if let Some(regex) = Regex::new(&rule.pattern) {
-                        *text_field = regex.replace_all(text_field, )
+                    if let Ok(regex) = Regex::new(&rule.pattern) {
+                        *text_field = regex.replace_all(text_field, empty).to_string();
                     }
                 }
                 _ => continue,
             }
         }
-    } 
+    }
+
+    fn change_format(&mut self) {
+        let text_field = &mut self.text_field;
+
+        for rule in &self.config.change_rules {
+            let replacement = rule.replacement.as_str();
+            match rule.rule_type.as_str() {
+                "exact" => {
+                    *text_field = text_field.replace(&rule.pattern, replacement);
+                }
+                "regex" => {
+                    if let Ok(regex) = Regex::new(&rule.pattern) {
+                        *text_field = regex.replace_all(text_field, replacement).to_string();
+                    }
+                }
+                _ => continue,
+            }
+        }
+    }
 
     fn json_format(&mut self) {
         let re = Regex::new(r"\{.*?\}").unwrap(); // Matches JSON-like content within {}
