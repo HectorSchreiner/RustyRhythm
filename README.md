@@ -57,7 +57,7 @@ Once compiled, your extension files will be available in the `pkg` folder. This 
   "highlight_rules": [
     {
       "rule_type": "exact",
-      "pattern": "red",
+      "pattern": "word_i_want_to_be_red",
       "style": "color:red;font-weight:bold;"
     },
     {
