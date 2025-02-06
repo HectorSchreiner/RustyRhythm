@@ -5,7 +5,7 @@ RustyRhythm *(Name is Work in Progress)* is a Chrome extension that enhances Log
 
 ---
 # Demonstration
-- Todo!
+- TODO!
 
 ---
 
