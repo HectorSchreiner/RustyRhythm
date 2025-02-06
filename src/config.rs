@@ -10,7 +10,11 @@ pub struct HighlightRule {
 }
 impl HighlightRule {
     pub fn new(rule_type: String, pattern: String, style: Option<String>) -> Self {
-        Self { rule_type, pattern, style }
+        Self {
+            rule_type,
+            pattern,
+            style,
+        }
     }
 }
 
@@ -18,10 +22,10 @@ impl HighlightRule {
 pub struct DeletionRule {
     pub rule_type: String,
     pub pattern: String,
-} 
+}
 
 impl DeletionRule {
-    pub fn new(rule_type: String, pattern: String,) -> Self {
+    pub fn new(rule_type: String, pattern: String) -> Self {
         Self { rule_type, pattern }
     }
 }
@@ -35,7 +39,11 @@ pub struct ChangeRule {
 
 impl ChangeRule {
     fn new(rule_type: String, pattern: String, replacement: String) -> Self {
-        Self { rule_type, pattern, replacement }
+        Self {
+            rule_type,
+            pattern,
+            replacement,
+        }
     }
 }
 
@@ -44,12 +52,12 @@ pub struct Config {
     pub highlight_rules: Vec<HighlightRule>,
     pub deletion_rules: Vec<DeletionRule>,
     pub change_rules: Vec<ChangeRule>,
-} 
+}
 
 impl Config {
     pub fn load_config(path: &str) -> std::io::Result<Self> {
         let config_data =
-            std::fs::read_to_string(path).expect("Could not read the config file");
+            std::fs::read_to_string(path).expect("Womp Womp: Could not read the config file ");
 
         // Parse the config data into the Config struct
         let config: Config = serde_json::from_str(&config_data)?;
@@ -57,4 +65,3 @@ impl Config {
         Ok(config)
     }
 }
-

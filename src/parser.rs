@@ -1,6 +1,6 @@
-use std::fs::File;
+use std::{fmt::format, fs::File};
 
-use js_sys::JSON;
+use js_sys::{Math::log, JSON};
 use regex::Regex;
 use serde_json::Value;
 
@@ -27,10 +27,13 @@ impl LogMessageParser {
     }
 
     pub fn get_text(&self) -> String {
+        log!("get_text");
         self.text_field.clone()
     }
 
     fn highlight_format(&mut self) {
+        log!("highlight_format");
+
         let text_field = &mut self.text_field;
 
         for rule in &self.config.highlight_rules {
