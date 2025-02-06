@@ -20,7 +20,7 @@ RustyRhythm *(Name is Work in Progress)* is a Chrome extension that enhances Log
 
 ## 🛠 Install Dependencies
 
-The extension can be installed under `releases`. But if you want to compile it yourself, you'll need `Rustup` installed on your machine. Install it using:
+The extension can be installed under `releases` (TODO!). But if you want to compile it yourself, you'll need `Rustup` installed on your machine. Install it using:
 
 ```sh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
