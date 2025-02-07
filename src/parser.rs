@@ -1,8 +1,6 @@
-use std::{fmt::format, fs::File, marker::PhantomData};
-
-use js_sys::{Math::log, JSON};
 use regex::Regex;
 use serde_json::Value;
+use std::marker::PhantomData;
 
 use crate::config::Config;
 

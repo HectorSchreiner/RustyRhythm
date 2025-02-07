@@ -1,8 +1,9 @@
 use js_sys::Promise;
 use std::time::Duration;
 use wasm_bindgen_futures::JsFuture;
-use web_sys::{window, Document, Element, Window};
+use web_sys::{window, Document};
 
+#[allow(dead_code)]
 pub async fn sleep(duration: Duration) {
     JsFuture::from(Promise::new(&mut |yes, _| {
         window()
@@ -23,6 +24,7 @@ macro_rules! log {
     }
 }
 
+#[allow(dead_code)]
 pub fn get_document() -> Document {
     let window = window().unwrap_or_else(|| {
         log!("no window found");

@@ -1,6 +1,4 @@
 use serde::{Deserialize, Serialize};
-use std::fs;
-use std::io;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct HighlightRule {
@@ -8,6 +6,8 @@ pub struct HighlightRule {
     pub pattern: String,
     pub style: Option<String>,
 }
+
+#[allow(dead_code)]
 impl HighlightRule {
     pub fn new(rule_type: String, pattern: String, style: Option<String>) -> Self {
         Self {
@@ -24,6 +24,7 @@ pub struct DeletionRule {
     pub pattern: String,
 }
 
+#[allow(dead_code)]
 impl DeletionRule {
     pub fn new(rule_type: String, pattern: String) -> Self {
         Self { rule_type, pattern }
@@ -37,6 +38,7 @@ pub struct ChangeRule {
     pub replacement: String,
 }
 
+#[allow(dead_code)]
 impl ChangeRule {
     fn new(rule_type: String, pattern: String, replacement: String) -> Self {
         Self {
