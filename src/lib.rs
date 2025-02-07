@@ -8,8 +8,7 @@ mod parser;
 #[wasm_bindgen(start)]
 pub async fn main() {
     std::panic::set_hook(Box::new(console_error_panic_hook::hook));
-    let selector = ".test";
-    parse_text(selector);
+    parse_text(".test");
 }
 
 #[wasm_bindgen]
