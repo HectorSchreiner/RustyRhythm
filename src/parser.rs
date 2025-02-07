@@ -13,7 +13,7 @@ pub struct LogMessageParser {
 
 impl LogMessageParser {
     pub fn new(text_field: String) -> Self {
-        let config = Config::load_config("config.json").unwrap();
+        let config = Config::load_config("pkg/config.json").unwrap();
         Self { text_field, config }
     }
 
@@ -27,13 +27,10 @@ impl LogMessageParser {
     }
 
     pub fn get_text(&self) -> String {
-        log!("get_text");
         self.text_field.clone()
     }
 
     fn highlight_format(&mut self) {
-        log!("highlight_format");
-
         let text_field = &mut self.text_field;
 
         for rule in &self.config.highlight_rules {
