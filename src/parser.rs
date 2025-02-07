@@ -1,4 +1,4 @@
-use std::{fmt::format, fs::File};
+use std::{fmt::format, fs::File, marker::PhantomData};
 
 use js_sys::{Math::log, JSON};
 use regex::Regex;
@@ -6,28 +6,55 @@ use serde_json::Value;
 
 use crate::config::Config;
 
-pub struct LogMessageParser {
+pub struct Formatted;
+pub struct Unformatted;
+
+pub struct LogMessageParser<State> {
     pub text_field: String,
     config: Config,
+    state: PhantomData<State>,
 }
 
-impl LogMessageParser {
+impl<State> LogMessageParser<State> {
     pub fn new(text_field: String) -> Self {
         let config = Config::load_config().unwrap();
-        Self { text_field, config }
-    }
-
-    pub fn format(&mut self) {
-        // order matters!
-        self.json_format();
-        self.deletetion_format();
-        self.change_format();
-        self.highlight_format();
-        // order matters!
+        Self {
+            text_field,
+            config,
+            state: Default::default(),
+        }
     }
 
     pub fn get_text(&self) -> String {
         self.text_field.clone()
+    }
+}
+
+impl LogMessageParser<Formatted> {
+    pub fn json_format(&mut self) {
+        let re = Regex::new(r"\{.*?\}").unwrap(); // Matches JSON-like content within {}
+
+        self.text_field = re
+            .replace_all(&self.text_field, |caps: &regex::Captures| {
+                serde_json::from_str::<Value>(&caps[0])
+                    .and_then(|json| serde_json::to_string_pretty(&json))
+                    .unwrap_or_else(|_| caps[0].to_string())
+            })
+            .to_string();
+    }
+}
+
+impl LogMessageParser<Unformatted> {
+    pub fn format_config_rules(mut self) -> LogMessageParser<Formatted> {
+        self.deletetion_format();
+        self.change_format();
+        self.highlight_format();
+
+        LogMessageParser {
+            text_field: self.text_field,
+            config: self.config,
+            state: Default::default(),
+        }
     }
 
     fn highlight_format(&mut self) {
@@ -98,17 +125,5 @@ impl LogMessageParser {
                 _ => continue,
             }
         }
-    }
-
-    fn json_format(&mut self) {
-        let re = Regex::new(r"\{.*?\}").unwrap(); // Matches JSON-like content within {}
-
-        self.text_field = re
-            .replace_all(&self.text_field, |caps: &regex::Captures| {
-                serde_json::from_str::<Value>(&caps[0])
-                    .and_then(|json| serde_json::to_string_pretty(&json))
-                    .unwrap_or_else(|_| caps[0].to_string())
-            })
-            .to_string();
     }
 }
