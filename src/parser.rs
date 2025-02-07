@@ -23,13 +23,18 @@ impl<State> LogMessageParser<State> {
         }
     }
 
-    pub fn get_text(&self) -> String {
-        self.text_field.clone()
+    pub fn get_text(&self) -> &str {
+        &self.text_field
     }
 }
 
-impl LogMessageParser<Formatted> {
-    pub fn json_format(&mut self) {
+impl LogMessageParser<Unformatted> {
+    pub fn json_format(mut self) -> LogMessageParser<Formatted> {
+        let re_whitespace = Regex::new(r"\s+").unwrap(); // Matches any whitespace (spaces, newlines, tabs)
+        self.text_field = re_whitespace
+            .replace_all(&self.text_field.trim(), " ")
+            .into_owned();
+
         let re = Regex::new(r"\{.*?\}").unwrap(); // Matches JSON-like content within {}
 
         self.text_field = re
@@ -38,21 +43,22 @@ impl LogMessageParser<Formatted> {
                     .and_then(|json| serde_json::to_string_pretty(&json))
                     .unwrap_or_else(|_| caps[0].to_string())
             })
-            .to_string();
-    }
-}
-
-impl LogMessageParser<Unformatted> {
-    pub fn format_config_rules(mut self) -> LogMessageParser<Formatted> {
-        self.deletetion_format();
-        self.change_format();
-        self.highlight_format();
+            .into_owned();
 
         LogMessageParser {
             text_field: self.text_field,
             config: self.config,
-            state: Default::default(),
+            state: PhantomData::default(),
         }
+    }
+}
+
+impl LogMessageParser<Formatted> {
+    pub fn format_config_rules(mut self) -> Self {
+        self.deletetion_format();
+        self.change_format();
+        self.highlight_format();
+        self
     }
 
     fn highlight_format(&mut self) {
