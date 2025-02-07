@@ -5,7 +5,6 @@ RustyRhythm *(Name is Work in Progress)* is a Chrome extension that enhances Log
 
 ---
 # Demonstration
-```
 Test File for WASM
 Before:
 {"timestamp": "2024-02-06T12:35:10Z", "event": "file_access", "user": "john_doe", "file": "/etc/passwd", "ip": "192.168.1.1"},{"timestamp": "2024-02-06T12:35:10Z", "event": "file_access", "user": "john_doe", "file": "/etc/passwd"} unusefuldata
@@ -23,7 +22,6 @@ After RustyRythm:
   "timestamp": "2024-02-06T12:35:10Z",
   "user": "john_doe"
 }
-```
 
 ---
 

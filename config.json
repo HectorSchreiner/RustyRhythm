@@ -1,36 +1,35 @@
 {
   "highlight_rules": [
     {
-      "rule_type": "exact",
-      "pattern": "red",
-      "style": "color:red;font-weight:bold;"
+      "rule_type": "regex",
+      "pattern": "\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b",
+      "style": "color:black;font-weight:bold;"
     },
     {
       "rule_type": "regex",
       "pattern": "\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b",
-      "style": "color:red;font-weight:bold;"
+      "style": "color:black;font-weight:bold;"
+    },
+    {
+      "rule_type": "regex",
+      "pattern": "\\b\\w*user\\w*=",
+      "style": "color:black;font-weight:bold;"
+    },
+    {
+      "rule_type": "regex",
+      "pattern": "\\b\\w*description\\w*=",
+      "style": "color:black;font-weight:bold;"
     }
   ],
   "deletion_rules": [
     {
-      "rule_type": "exact",
-      "pattern": "unusefuldata"
-    },
-    {
       "rule_type": "regex",
       "pattern": "<\\w> = <>"
-    }
-  ],
-  "change_rules": [
-    {
-      "rule_type": "exact",
-      "pattern": "red",
-      "replacement": "blue"
     },
     {
       "rule_type": "regex",
-      "pattern": "\\bsigma\\b",
-      "replacement": "boy"
+      "pattern": "\\w+=\\s\\|"
     }
-  ]
+  ],
+  "change_rules": []
 }
