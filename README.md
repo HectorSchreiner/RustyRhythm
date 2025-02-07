@@ -3,7 +3,7 @@ RustyRhythm *(Name is Work in Progress)* is a Chrome extension that enhances Log
 
 🔧 **Built with:** Rust 🦀 + WebAssembly ⚡
 
----
+
 # Demonstration
 Test File for WASM
 Before:
@@ -23,7 +23,6 @@ After RustyRythm:
   "user": "john_doe"
 }
 
----
 
 # 📥 Installation
 ## **Add the Extension to Chrome**
