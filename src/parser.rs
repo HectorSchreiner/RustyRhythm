@@ -13,7 +13,7 @@ pub struct LogMessageParser {
 
 impl LogMessageParser {
     pub fn new(text_field: String) -> Self {
-        let config = Config::load_config("pkg/config.json").unwrap();
+        let config = Config::load_config().unwrap();
         Self { text_field, config }
     }
 

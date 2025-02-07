@@ -55,13 +55,8 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn load_config(path: &str) -> std::io::Result<Self> {
-        let config_data =
-            std::fs::read_to_string(path).expect("Womp Womp: Could not read the config file ");
-
-        // Parse the config data into the Config struct
-        let config: Config = serde_json::from_str(&config_data)?;
-
-        Ok(config)
+    const DATA: &[u8] = include_bytes!("../config.json");
+    pub fn load_config() -> std::io::Result<Self> {
+        Ok(serde_json::from_slice(Self::DATA)?)
     }
 }
