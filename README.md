@@ -5,7 +5,25 @@ RustyRhythm *(Name is Work in Progress)* is a Chrome extension that enhances Log
 
 ---
 # Demonstration
-- TODO!
+```
+Test File for WASM
+Before:
+{"timestamp": "2024-02-06T12:35:10Z", "event": "file_access", "user": "john_doe", "file": "/etc/passwd", "ip": "192.168.1.1"},{"timestamp": "2024-02-06T12:35:10Z", "event": "file_access", "user": "john_doe", "file": "/etc/passwd"} unusefuldata
+
+After RustyRythm:
+{
+  "event": "file_access",
+  "file": "/etc/passwd",
+  "ip": "192.168.1.1",
+  "timestamp": "2024-02-06T12:35:10Z",
+  "user": "john_doe"
+},{
+  "event": "file_access",
+  "file": "/etc/passwd",
+  "timestamp": "2024-02-06T12:35:10Z",
+  "user": "john_doe"
+}
+```
 
 ---
 
@@ -51,11 +69,11 @@ Once compiled, your extension files will be available in the `pkg` folder. This 
 - [x] **Highlighting:** Automatically highlights important data like usernames and IP-Addresses.
 - [x] **Custom Deletion and Replacement Rules:** Delete certain patterns and words in the alarm text.
 - [x] **JSON Reformatting:** Reformats Json fields in the alarmtext so it looks more visually appealing.
-- [x] **Config file:** Configure the extension with an easy to configure `config.json` 
+- [x] **Config file:** Configure the extension with an easy to configure `config.json`
 - [ ] **ON/OFF Toggle Keyboard Shortcut:** (*Planned feature!*)
 
 # ⚙️ Config Example
-You can find more information by reading the [Documentation](https://github.com/HectorSchreiner/RustyRhythm/blob/master/CONFIG_DOCUMENTATION.md) 
+You can find more information by reading the [Documentation](https://github.com/HectorSchreiner/RustyRhythm/blob/master/CONFIG_DOCUMENTATION.md)
 ```json
 {
   "highlight_rules": [

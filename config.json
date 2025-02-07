@@ -14,7 +14,7 @@
   "deletion_rules": [
     {
       "rule_type": "exact",
-      "pattern": "DEBUG"
+      "pattern": "unusefuldata"
     },
     {
       "rule_type": "regex",
