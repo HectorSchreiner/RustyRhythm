@@ -4,7 +4,7 @@ RustyRhythm *(Name is Work in Progress)* is a Chrome extension that enhances Log
 🔧 **Built with:** Rust 🦀 + WebAssembly ⚡
 
 
-# :thought_balloon: Demonstration
+# Demonstration
 Test File for WASM
 Before:
 
