@@ -107,8 +107,8 @@ You can find more information by reading the [Documentation](https://github.com/
     },
     {
       "rule_type": "regex",
-      "pattern": "\\bsigma\\b",
-      "replacement": "boy"
+      "pattern": "\\something\\b",
+      "replacement": "somethingelse"
     }
   ]
 }
