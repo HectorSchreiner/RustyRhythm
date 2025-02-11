@@ -1,0 +1,14 @@
+{
+  "name": "amazing-extension",
+  "collaborators": [
+    "Hector <agenthector007@gmail.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "amazing_extension_bg.wasm",
+    "amazing_extension.js",
+    "amazing_extension.d.ts"
+  ],
+  "browser": "amazing_extension.js",
+  "types": "amazing_extension.d.ts"
+}
