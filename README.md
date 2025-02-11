@@ -1,7 +1,7 @@
-# 🚀 LogRhythm LogMessage Formatter
+# LogRhythm LogMessage Formatter
 RustyRhythm *(Name is Work in Progress)* is a Chrome extension that enhances LogRhythm's WebConsole platform by reformatting log messages into a more readable and visually appealing format. It highlights important text — such as **usernames and IP addresses** — and restructures log messages for improved clarity.
 
-🔧 **Built with:** Rust 🦀 + WebAssembly ⚡
+**Built with:** Rust 🦀 + WebAssembly ⚡
 
 
 # Demonstration
@@ -26,7 +26,7 @@ After RustyRythm:
 }
 ```
 
-# 📥 Installation
+# Installation
 ## **Add the Extension to Chrome**
 1. Open Chrome and navigate to:
    **Extensions → Manage Extensions**
@@ -35,7 +35,7 @@ After RustyRythm:
 
 ---
 
-## 🛠 Install Dependencies
+## Install Dependencies
 
 The extension can be installed under `releases` (TODO!). But if you want to compile it yourself, you'll need `Rustup` installed on your machine. Install it using:
 
@@ -51,14 +51,14 @@ cargo install cargo-generate
 cargo install wasm-pack
 ```
 
-## ⚙️ Compile the Extension
+## Compile the Extension
 Instead of using `cargo build`, run the provided build script:
 ```
 sh build.sh
 ```
 Once compiled, your extension files will be available in the `pkg` folder. This is the folder you need to import into Chrome.
 
-# 🚀 How to Use
+# How to Use
 1. Install the extension using the steps above.
 2. The extension will automatically enhance the LogMessage box in the WebConsole.
 3. Configure features via the config file.
@@ -73,7 +73,7 @@ Once compiled, your extension files will be available in the `pkg` folder. This 
 - [ ] **Popup.html:** Nicer User Interface. (*Planned feature!*)
 - [ ] **User Customization:** The user should be able to customize formatting, color, highligtwords... (*Planned feature!*)
 
-# ⚙️ Config Example
+# Config Example
 You can find more information by reading the [Documentation](https://github.com/HectorSchreiner/RustyRhythm/blob/master/CONFIG_DOCUMENTATION.md)
 ```json
 {
