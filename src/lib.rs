@@ -8,7 +8,7 @@ mod parser;
 #[wasm_bindgen(start)]
 pub async fn main() {
     std::panic::set_hook(Box::new(console_error_panic_hook::hook));
-    parse_text(".test").unwrap();
+    parse_text(".detailsActionScroll.details-log-message.ng-binding").unwrap();
 }
 
 #[wasm_bindgen]
