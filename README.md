@@ -2,7 +2,7 @@
 RustyRhythm *(Name is Work in Progress)* is a Chrome extension that enhances LogRhythm's WebConsole platform by reformatting log messages into a more readable and visually appealing format. It highlights important text — such as **usernames and IP addresses** — and restructures log messages for improved clarity.
 
 **Built with:** Rust 🦀 + WebAssembly ⚡
-
+---
 # Installation
 ### **Add the Extension to Chrome**
 1. Open Chrome and navigate to:
@@ -10,7 +10,6 @@ RustyRhythm *(Name is Work in Progress)* is a Chrome extension that enhances Log
 2. **Enable Developer Mode** (toggle the button in the upper-right corner).
 3. Click **Load Unpacked** and select the `pkg` folder.
 
----
 
 ### Install Dependencies
 
@@ -34,7 +33,7 @@ Instead of using `cargo build`, run the provided build script:
 sh build.sh
 ```
 Once compiled, your extension files will be available in the `pkg` folder. This is the folder you need to import into Chrome.
-
+---
 # How to Use
 1. Install the extension using the steps above.
 2. The extension will automatically enhance the LogMessage box in the WebConsole.
