@@ -4,7 +4,7 @@ RustyRhythm *(Name is Work in Progress)* is a Chrome extension that enhances Log
 **Built with:** Rust 🦀 + WebAssembly ⚡
 
 # Installation
-## **Add the Extension to Chrome**
+### **Add the Extension to Chrome**
 1. Open Chrome and navigate to:
    **Extensions → Manage Extensions**
 2. **Enable Developer Mode** (toggle the button in the upper-right corner).
@@ -12,7 +12,7 @@ RustyRhythm *(Name is Work in Progress)* is a Chrome extension that enhances Log
 
 ---
 
-## Install Dependencies
+### Install Dependencies
 
 The extension can be installed under `releases` (TODO!). But if you want to compile it yourself, you'll need `Rustup` installed on your machine. Install it using:
 
@@ -28,7 +28,7 @@ cargo install cargo-generate
 cargo install wasm-pack
 ```
 
-## Compile the Extension
+### Compile the Extension
 Instead of using `cargo build`, run the provided build script:
 ```
 sh build.sh
