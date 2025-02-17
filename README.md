@@ -37,7 +37,7 @@ Once compiled, your extension files will be available in the `pkg` folder. This 
 # How to Use
 1. Install the extension using the steps above.
 2. The extension will automatically enhance the LogMessage box in the WebConsole.
-3. Configure features via the config file.
+3. Configure the features via the config file.
 4. Toggle features on/off from the extension dropdown menu.
 
 # ✨ Features
