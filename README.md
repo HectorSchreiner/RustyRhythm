@@ -48,6 +48,7 @@ Once compiled, your extension files will be available in the `pkg` folder. This 
 - [ ] **ON/OFF Toggle Keyboard Shortcut:** (*Planned feature!*)
 - [ ] **Popup.html:** Nicer User Interface. (*Planned feature!*)
 - [ ] **User Customization:** The user should be able to customize formatting, color, highligtwords... (*Planned feature!*)
+- [ ] **On DOM Change:** Refresh when the DOM changes
 
 # Config Example
 You can find more information by reading the [Documentation](https://github.com/HectorSchreiner/RustyRhythm/blob/master/CONFIG_DOCUMENTATION.md)
