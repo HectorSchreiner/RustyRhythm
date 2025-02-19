@@ -102,7 +102,7 @@ After RustyRythm:
 ```
 {
   "event": "file_access",
-  "file": "/etc/passwd",
+  "file": "/etc/shadow",
   "ip": "192.168.1.1",
   "timestamp": "2024-02-06T12:35:10Z",
   "user": "john_doe"
