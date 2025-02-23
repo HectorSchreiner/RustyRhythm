@@ -49,7 +49,7 @@ Once compiled, your extension files will be available in the `pkg` folder. This 
 - [ ] **Popup.html:** Nicer User Interface. (*Planned feature!*)
 - [ ] **User Customization:** The user should be able to customize formatting, color, highligtwords... (*Planned feature!*)
 
-**Must have**
+**Must have:**
 - [ ] **On DOM Change:** Reload when the DOM changes
 
 # Config Example
