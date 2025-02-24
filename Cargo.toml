@@ -25,6 +25,8 @@ features = [
     "Element",
     "HtmlElement",
     "CssStyleDeclaration",
+    "MutationObserver",
+    "MutationObserverInit",
 ]
 
 [dev-dependencies]

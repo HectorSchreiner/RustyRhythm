@@ -22,7 +22,8 @@ pub fn parse_text(selector: &str) -> Result<(), JsValue> {
     // debug log
     if let Some(element) = document.query_selector(selector).ok().flatten() {
         log!("Here is the html: {:?}", element.inner_html());
-        let log_message_parser: LogMessageParser<Formatted> = LogMessageParser::new(element.inner_html());
+        let log_message_parser: LogMessageParser<Formatted> =
+            LogMessageParser::new(element.inner_html());
         //let log_message_parser = log_message_parser.json_format().format_config_rules();
         let formatted_text = format!("hector was here{:?}", log_message_parser.get_text());
         log!("{:?}", formatted_text);
@@ -39,8 +40,9 @@ pub fn observe_dom_changes(selector: &str) -> Result<(), JsValue> {
         .document()
         .ok_or("Failed to get document")?;
 
-        // let mutation_observer = new observer
-        // if let Some(element) = document.query_selector(selector).ok().flatten() {
+    // let mutation_observer = new observer
+    // if let Some(element) = document.query_selector(selector).ok().flatten() {
 
-        // }
+    // }
+    Ok(())
 }
