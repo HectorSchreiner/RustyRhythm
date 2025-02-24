@@ -40,9 +40,8 @@ pub fn observe_dom_changes(selector: &str) -> Result<(), JsValue> {
         .document()
         .ok_or("Failed to get document")?;
 
-    // let mutation_observer = new observer
-    // if let Some(element) = document.query_selector(selector).ok().flatten() {
+    //let callback = ||
+    //let mutation_observer = MutationObserver::new();
 
-    // }
     Ok(())
 }
