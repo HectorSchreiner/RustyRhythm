@@ -49,8 +49,10 @@ Once compiled, your extension files will be available in the `pkg` folder. This 
 - [ ] **Popup.html:** Nicer User Interface. (*Planned feature!*)
 - [ ] **User Customization:** The user should be able to customize formatting, color, highligtwords... (*Planned feature!*)
 
-**Must have:**
+**Ongoing:**
 - [ ] **On DOM Change:** Reload when the DOM changes
+
+
 
 # Config Example
 You can find more information by reading the [Documentation](https://github.com/HectorSchreiner/RustyRhythm/blob/master/CONFIG_DOCUMENTATION.md)
