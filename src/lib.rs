@@ -55,9 +55,13 @@ pub fn observe_dom_changes(selector: &str) -> Result<(), JsValue> {
 
     let callback = Closure::wrap(Box::new(
         move |mutation_list: js_sys::Array, _observer: web_sys::MutationObserver| {
+            let selector_clone = selector.clone();
             for i in 0..mutation_list.length() {
                 let mutation = mutation_list.get(i);
                 log!("Mutation Observed: {:?}", mutation);
+            }
+            if let Err(err) = parse_text(&selector_clone) {
+                web_sys::console::log_1(&format!("Error reformatting text: {:?}", err).into());
             }
         },
     )
