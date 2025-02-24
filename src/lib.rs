@@ -11,6 +11,7 @@ pub async fn main() {
     std::panic::set_hook(Box::new(console_error_panic_hook::hook));
     let selector = ".detailsActionsScroll.details-log-message.ng-binding";
     observe_dom_changes(selector).unwrap();
+    log!("hello dom")
 }
 
 #[wasm_bindgen]
@@ -27,7 +28,7 @@ pub fn parse_text(selector: &str) -> Result<(), JsValue> {
         let log_message_parser: LogMessageParser<Formatted> =
             LogMessageParser::new(element.inner_html());
         //let log_message_parser = log_message_parser.json_format().format_config_rules();
-        let formatted_text = format!("hector was here{:?}", log_message_parser.get_text());
+        let formatted_text = format!("hector was here: {:?}", log_message_parser.get_text());
         log!("{:?}", formatted_text);
         element.set_text_content(Some(&formatted_text));
     }
@@ -42,7 +43,7 @@ pub fn observe_dom_changes(selector: &str) -> Result<(), JsValue> {
     .document()
     .ok_or("Failed to get document")?;
 
-    let element = document.query_selector(selector)?.ok_or("Failed to find element")?;
+    let element = document.query_selector(selector).ok().flatten().ok_or("failed to find element")?;
 
     let selector = selector.to_string();
 
