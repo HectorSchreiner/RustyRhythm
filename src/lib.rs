@@ -9,9 +9,7 @@ mod parser;
 #[wasm_bindgen(start)]
 pub async fn main() {
     std::panic::set_hook(Box::new(console_error_panic_hook::hook));
-
     let selector = ".detailsActionsScroll.details-log-message.ng-binding";
-    parse_text(selector).unwrap();
     observe_dom_changes(selector).unwrap();
 }
 
@@ -22,6 +20,7 @@ pub fn parse_text(selector: &str) -> Result<(), JsValue> {
         .document()
         .ok_or("Failed to get document")?;
 
+    let element = document.query_selector(selector)?.ok_or("Failed to find element")?;
     // debug log
     if let Some(element) = document.query_selector(selector).ok().flatten() {
         log!("Here is the html: {:?}", element.inner_html());
@@ -43,8 +42,13 @@ pub fn observe_dom_changes(selector: &str) -> Result<(), JsValue> {
     .document()
     .ok_or("Failed to get document")?;
 
+    let element = document.query_selector(selector)?.ok_or("Failed to find element")?;
+
+    let selector = selector.to_string();
+
     let callback = Closure::wrap(Box::new(
         move |_mutation_list: js_sys::Array, _observer: web_sys::MutationObserver| {
+            parse_text(&selector).unwrap();
             log!("Mutation Observed");
         },
     )
@@ -55,7 +59,7 @@ pub fn observe_dom_changes(selector: &str) -> Result<(), JsValue> {
     mutation_config.set_child_list(true);
     mutation_config.set_subtree(true);
 
-    mutation_observer.observe_with_options(&document, &mutation_config).unwrap();
+    mutation_observer.observe_with_options(&element, &mutation_config).unwrap();
     callback.forget();
 
     Ok(())
