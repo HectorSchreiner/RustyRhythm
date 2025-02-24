@@ -40,6 +40,8 @@ pub fn observe_dom_changes(selector: &str) -> Result<(), JsValue> {
         .document()
         .ok_or("Failed to get document")?;
 
+    let element = document.query_selector(selector).unwrap();
+
     let callback = Closure::wrap(Box::new(
         move |mutation_list: js_sys::Array, observer: web_sys::MutationObserver| {
             log!("Mutation Observed");
@@ -48,6 +50,12 @@ pub fn observe_dom_changes(selector: &str) -> Result<(), JsValue> {
         as Box<dyn FnMut(js_sys::Array, web_sys::MutationObserver)>);
 
     let mutation_observer = web_sys::MutationObserver::new(callback.as_ref().unchecked_ref())?;
+    let mutation_config = web_sys::MutationObserverInit::new();
+    mutation_config.set_child_list(true);
+    mutation_config.set_subtree(true);
+
+    mutation_observer.observe(&document).unwrap();
+    callback.forget();
 
     Ok(())
 }
