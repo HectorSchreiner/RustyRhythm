@@ -9,7 +9,10 @@ mod parser;
 #[wasm_bindgen(start)]
 pub async fn main() {
     std::panic::set_hook(Box::new(console_error_panic_hook::hook));
-    parse_text(".detailsActionsScroll.details-log-message.ng-binding").unwrap();
+
+    let selector = ".detailsActionsScroll.details-log-message.ng-binding";
+    parse_text(selector).unwrap();
+    observe_dom_changes(selector).unwrap();
 }
 
 #[wasm_bindgen]
@@ -36,12 +39,12 @@ pub fn parse_text(selector: &str) -> Result<(), JsValue> {
 #[wasm_bindgen]
 pub fn observe_dom_changes(selector: &str) -> Result<(), JsValue> {
     let document = web_sys::window()
-        .ok_or("Failed to get window")?
-        .document()
-        .ok_or("Failed to get document")?;
+    .ok_or("Failed to get window")?
+    .document()
+    .ok_or("Failed to get document")?;
 
     let callback = Closure::wrap(Box::new(
-        move |mutation_list: js_sys::Array, observer: web_sys::MutationObserver| {
+        move |_mutation_list: js_sys::Array, _observer: web_sys::MutationObserver| {
             log!("Mutation Observed");
         },
     )
@@ -52,7 +55,7 @@ pub fn observe_dom_changes(selector: &str) -> Result<(), JsValue> {
     mutation_config.set_child_list(true);
     mutation_config.set_subtree(true);
 
-    mutation_observer.observe(&document).unwrap();
+    mutation_observer.observe_with_options(&document, &mutation_config).unwrap();
     callback.forget();
 
     Ok(())
