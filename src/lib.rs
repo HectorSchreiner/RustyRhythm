@@ -40,8 +40,6 @@ pub fn observe_dom_changes(selector: &str) -> Result<(), JsValue> {
         .document()
         .ok_or("Failed to get document")?;
 
-    let element = document.query_selector(selector).unwrap();
-
     let callback = Closure::wrap(Box::new(
         move |mutation_list: js_sys::Array, observer: web_sys::MutationObserver| {
             log!("Mutation Observed");
