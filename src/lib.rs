@@ -1,6 +1,6 @@
 use parser::*;
 use wasm_bindgen::prelude::*;
-use web_sys::{Document, MutationObserver, MutationObserverInit};
+use web_sys::{console::log, Document, MutationObserver, MutationObserverInit};
 #[macro_use]
 mod util;
 mod config;
@@ -10,8 +10,14 @@ mod parser;
 pub async fn main() {
     std::panic::set_hook(Box::new(console_error_panic_hook::hook));
     let selector = ".detailsActionsScroll.details-log-message.ng-binding";
-    observe_dom_changes(selector.to_string()).unwrap();
-    log!("hello dom")
+    loop {
+        observe_dom_changes(selector.to_string()).unwrap();
+        log!("hello dom");
+        // Wait for a short period before checking again
+        wasm_bindgen_futures::JsFuture::from(js_sys::Promise::new(&mut |resolve, _| {
+            web_sys::window().unwrap().set_timeout_with_callback_and_timeout_and_arguments_0(&resolve, 100).unwrap();
+        })).await.unwrap();
+    }
 }
 
 #[wasm_bindgen]
@@ -63,6 +69,7 @@ pub fn observe_dom_changes(selector: String) -> Result<(), JsValue> {
                     }
                 } 
             } 
+            log!("didnt find anything");
         },
     )
         as Box<dyn FnMut(js_sys::Array, web_sys::MutationObserver)>);
