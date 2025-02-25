@@ -10,7 +10,7 @@ mod parser;
 pub async fn main() {
     std::panic::set_hook(Box::new(console_error_panic_hook::hook));
     let selector = ".detailsActionsScroll.details-log-message.ng-binding";
-    observe_dom_changes(selector).unwrap();
+    observe_dom_changes(selector.to_string()).unwrap();
     log!("hello dom")
 }
 
@@ -20,10 +20,6 @@ pub fn parse_text(selector: &str) -> Result<(), JsValue> {
         .ok_or("Failed to get window")?
         .document()
         .ok_or("Failed to get document")?;
-
-    let element = document
-        .query_selector(selector)?
-        .ok_or("Failed to find element")?;
     // debug log
     if let Some(element) = document.query_selector(selector).ok().flatten() {
         log!("Here is the html: {:?}", element.inner_html());
@@ -39,14 +35,14 @@ pub fn parse_text(selector: &str) -> Result<(), JsValue> {
 }
 
 #[wasm_bindgen]
-pub fn observe_dom_changes(selector: &str) -> Result<(), JsValue> {
+pub fn observe_dom_changes(selector: String) -> Result<(), JsValue> {
     let document = web_sys::window()
         .ok_or("Failed to get window")?
         .document()
         .ok_or("Failed to get document")?;
 
     let element = document
-        .query_selector(selector)
+        .query_selector(&selector)
         .ok()
         .flatten()
         .ok_or("failed to find element")?;
@@ -54,32 +50,34 @@ pub fn observe_dom_changes(selector: &str) -> Result<(), JsValue> {
     let selector = selector.to_string();
 
     let callback = Closure::wrap(Box::new(
-        move |mutation_list: js_sys::Array, _observer: web_sys::MutationObserver| {
+        move |_mutation_list: js_sys::Array, _observer: web_sys::MutationObserver| {
             let selector_clone = selector.clone();
-            for i in 0..mutation_list.length() {
-                let mutation = mutation_list.get(i);
-                log!("Mutation Observed: {:?}", mutation);
-            }
-            if let Err(err) = parse_text(&selector_clone) {
-                web_sys::console::log_1(&format!("Error reformatting text: {:?}", err).into());
-            }
+            if let Some(element) = document.query_selector(&selector_clone).ok().flatten() { 
+                if element.inner_html().is_empty() {
+                    // debug log
+                    log!("Element is empty, doing nothing.");
+                } else {
+                    log!("Text was found");
+                    if let Err(err) = parse_text(&selector) {
+                        log!("Error reformatting text: {:?}", err);
+                    }
+                } 
+            } 
         },
     )
         as Box<dyn FnMut(js_sys::Array, web_sys::MutationObserver)>);
 
     let mutation_observer = web_sys::MutationObserver::new(callback.as_ref().unchecked_ref())?;
 
-    let mutation_config = {
-        let mut config = web_sys::MutationObserverInit::new();
-        config.set_child_list(true);
-        config.set_subtree(true);
-        config
-    };
+    let mutation_config = web_sys::MutationObserverInit::new();
+    mutation_config.set_child_list(true);
+    mutation_config.set_subtree(true);
+    
 
     mutation_observer
         .observe_with_options(&element, &mutation_config)
         .unwrap();
     callback.forget();
-
+   
     Ok(())
 }
