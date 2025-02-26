@@ -1,8 +1,10 @@
-use std::rc::Rc;
+use std::{fmt::format, rc::Rc};
 
+use js_sys::Math::log;
 use parser::*;
+use regex::Regex;
 use wasm_bindgen::prelude::*;
-use web_sys::{console::log, window, Document, MutationObserver, MutationObserverInit, NodeList, Node, Element};
+use web_sys::{window, Document, MutationObserver, MutationObserverInit, NodeList, Node, Element, XmlHttpRequest};
 #[macro_use]
 mod util;
 mod config;
@@ -14,8 +16,33 @@ pub async fn main() {
     log!("start - registering keypress listener");
     
     if let Err(e) = register_keypress_listener() {
+        
         log!("Error registering keypress listener: {:?}", e);
     }
+}
+
+#[wasm_bindgen]
+pub fn replace_ugly_name() -> Result<(), JsValue> {
+    let document = web_sys::window()
+        .ok_or("Failed to get window")?
+        .document()
+        .ok_or("Failed to get document")?;
+
+    let selector = ".tab-label.ng-scope";
+
+    if let Ok(target) =  document.query_selector(&selector) {
+        match target {
+            Some(target) => {
+                log!("{:?}", target.inner_html());
+                target.set_text_content(Some("Swaggy Gangster Name"));
+            }
+            _ => {
+                log!("Target not found");
+            }
+        }
+    }
+    Ok(())
+
 }
 
 
@@ -25,27 +52,35 @@ pub fn parse_text(selector: &str) -> Result<(), JsValue> {
         .ok_or("Failed to get window")?
         .document()
         .ok_or("Failed to get document")?;
-    // debug log
+
     let elements = document.query_selector_all(selector).map_err(|_| "Failed to select logs")?;
 
     for i in 0..elements.length() {
         if let Some(node) = elements.item(i) {
             if let Ok(element) = node.dyn_into::<Element>() {
-                log!("Processing log #{}", i);
-                if element.has_attribute("data-formatted") {
-                    log!("Already Formatted!, Continue");
-                    continue;
-                }
-
-                let log_message_parser: LogMessageParser<Formatted> =
+                let log_message_parser: LogMessageParser<Unformatted> =
                     LogMessageParser::new(element.inner_html());
-                let formatted_text = format!("!!!Formatted{:?}Formatted!!!", log_message_parser.get_text());
-                element.set_text_content(Some(&formatted_text));
+                let formatted_text = log_message_parser.get_text();
+                let cleaned_text_with_newlines = formatted_text.replace("\n", "<br>");
+                log!("{:?}", cleaned_text_with_newlines);
+
+                if let Ok(target) = document.query_selector(".detailsActionsScroll.ii-outer") {
+                    match target {
+                        Some(target) => {
+                            log!("{:?}", target.text_content());
+                            log!("{:?}", &cleaned_text_with_newlines);
+                            target.set_inner_html(&format!("<pre>{:?}</pre>", formatted_text));
+                        }
+                        _ => {
+                            log!("Target not found");
+                        }
+                    }
+                }
                 element.set_attribute("data-formatted", "true")?;
             }
         }
     }
-    
+
     Ok(())
 }
 
@@ -67,4 +102,9 @@ pub fn register_keypress_listener() -> Result<(), JsValue> {
     closure.forget(); 
 
     Ok(())
+}
+
+fn remove_quotes(input: &str) -> String {
+    let re = Regex::new(r#"^"|"$"#).unwrap();
+    re.replace_all(input, "").into_owned()
 }
