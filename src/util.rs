@@ -1,4 +1,5 @@
 use js_sys::Promise;
+use regex::Regex;
 use std::time::Duration;
 use wasm_bindgen_futures::JsFuture;
 use web_sys::{window, Document};
@@ -36,4 +37,8 @@ pub fn get_document() -> Document {
     });
 
     return document;
+}
+
+pub fn remove_quotes(input: &str) -> String {
+    Regex::new(r#"^"|"$"#).unwrap().replace_all(input, "").into_owned()
 }
