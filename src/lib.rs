@@ -60,11 +60,7 @@ pub fn parse_text() -> Result<(), JsValue> {
         // Parse and format log message
         let log_message_parser = LogMessageParser::new(current_text.clone()).json_format().format_config_rules();
         let formatted_text = log_message_parser.get_text();
-        let mut cleaned_text_with_newlines = formatted_text.to_string(); // Preserve line breaks
-        cleaned_text_with_newlines = cleaned_text_with_newlines.replace("<", "&lt;"); 
-        cleaned_text_with_newlines= cleaned_text_with_newlines.replace(">", "&gt;"); 
-
-        log!("Formatted text: {:?}", formatted_text);
+        log!("Cleaned text{}", formatted_text);
 
         // Store original text for change detection
         //element.set_attribute("data-original-text", &current_text)?;
@@ -76,7 +72,7 @@ pub fn parse_text() -> Result<(), JsValue> {
             //     "<div class=\"detailsActionsScroll details-log-message ng-binding\">{}</div>",
             //     &cleaned_text_with_newlines
             // ));   
-            target.set_inner_html(&format!("{}", &cleaned_text_with_newlines));
+            target.set_inner_html(&format!("{}", &formatted_text));
         } else {
             log!("Target for formatted log not found");
         }
