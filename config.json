@@ -39,6 +39,16 @@
       "rule_type": "regex",
       "pattern": "([a-zA-Z]:\\\\|\\\\\\\\)[^\\\\/:*?\"<>|\\r\\n]+(\\\\[^\\\\/:*?\"<>|\\r\\n]+)*",
       "style": "font-weight:bold;"
+    },
+    {
+      "rule_type": "regex",
+      "pattern": "Name='[^']*'&gt;(\\w+)&lt;",
+      "style": "font-weight:bold;"
+    },
+    {
+      "rule_type": "exact",
+      "pattern": "bytes 0",
+      "style": "color:red;font-weight:bold;"
     }
   ],
   "deletion_rules": [
@@ -56,5 +66,16 @@
     }
     
   ],
-  "change_rules": []
+  "change_rules": [
+    {
+      "rule_type": "exact",
+      "pattern": "    ",
+      "replacement": "<br><br>"
+    },
+    {
+      "rule_type": "exact",
+      "pattern": "  ",
+      "replacement": "<br>"
+    }
+  ]
 }
