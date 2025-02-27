@@ -1,6 +1,6 @@
 use regex::Regex;
 use wasm_bindgen::prelude::*;
-use web_sys::{Document};
+use web_sys::{Document, Element, HtmlElement, DomTokenList};
 use js_sys::Math::log;
 
 #[macro_use]
@@ -48,37 +48,39 @@ pub fn parse_text() -> Result<(), JsValue> {
         let current_text = element.text_content();
         if let Some(current_text) = element.text_content() {
 
-        // Check if already formatted, and dont reformat
-        if let Some(prev_text) = element.get_attribute("data-original-text") {
+            // Check if already formatted, and don't reformat
+            if let Some(prev_text) = element.get_attribute("data-original-text") {
                 if prev_text == current_text {
                     log!("Skipping formatting: Log content unchanged.");
                     return Ok(());
                 }
             }
         
+            // Parse and format log message
+            let log_message_parser = LogMessageParser::new(current_text.clone()).json_format().format_config_rules();
+            let formatted_text = log_message_parser.get_text();
+            log!("Cleaned text{}", formatted_text);
 
-        // Parse and format log message
-        let log_message_parser = LogMessageParser::new(current_text.clone()).json_format().format_config_rules();
-        let formatted_text = log_message_parser.get_text();
-        log!("Cleaned text{}", formatted_text);
+            // Try to find the target element with either class
+            if let Some(target) = document.query_selector(".detailsActionsScroll.ii-outer").ok().flatten()
+                .or_else(|| document.query_selector(".detailsActionsScroll.customclass").ok().flatten()) {
+                
+                if let Ok(target) = target.dyn_into::<HtmlElement>() {
+                    // Remove the .ii-outer class and add the custom class
+                    target.class_list().remove_1("ii-outer").unwrap();
+                    target.class_list().add_1("customclass").unwrap();
+                    log!("Updated class to customclass");
 
-        // Store original text for change detection
-        //element.set_attribute("data-original-text", &current_text)?;
-        //element.set_attribute("data-formatted-text", &formatted_text)?;
-
-        // Display formatted log without blocking updates
-        if let Some(target) = document.query_selector(".detailsActionsScroll.ii-outer").ok().flatten() {
-            // target.set_inner_html(&format!(
-            //     "<div class=\"detailsActionsScroll details-log-message ng-binding\">{}</div>",
-            //     &cleaned_text_with_newlines
-            // ));   
-            target.set_inner_html(&format!("{}", &formatted_text));
+                    // Change the content inside the div
+                    target.set_inner_html(&format!("{}", &formatted_text));
+                    log!("Changed content inside the div");
+                }
+            } else {
+                log!("Target for formatted log not found");
+            }
         } else {
-            log!("Target for formatted log not found");
+            log!("Log message div not found");
         }
-    } else {
-        log!("Log message div not found");
-    }
     }
     Ok(())
 }
