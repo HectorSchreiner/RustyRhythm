@@ -1,6 +1,6 @@
 use regex::Regex;
 use wasm_bindgen::prelude::*;
-use web_sys::{window, Document, Element};
+use web_sys::{Document};
 use js_sys::Math::log;
 
 #[macro_use]
@@ -42,38 +42,48 @@ pub fn parse_text() -> Result<(), JsValue> {
     let selector = ".detailsActionsScroll.details-log-message.ng-binding";
     
     if let Some(element) = document.query_selector(selector).ok().flatten() {
+        log!("{:?}", element);
         log!("Processing log...");
 
-        let current_text = element.inner_html();
+        let current_text = element.text_content();
+        if let Some(current_text) = element.text_content() {
 
         // Check if already formatted, and dont reformat
         if let Some(prev_text) = element.get_attribute("data-original-text") {
-            if prev_text == current_text {
-                log!("Skipping formatting: Log content unchanged.");
-                return Ok(());
+                if prev_text == current_text {
+                    log!("Skipping formatting: Log content unchanged.");
+                    return Ok(());
+                }
             }
-        }
+        
 
         // Parse and format log message
-        let log_message_parser: LogMessageParser<Unformatted> = LogMessageParser::new(current_text.clone());
-        let formatted_text = log_message_parser.get_text().replace("\n", "<br>");
-        let cleaned_text_with_newlines = formatted_text.replace("\n", "<br>"); // Preserve line breaks
-        log!("Formatted text: {:?}", cleaned_text_with_newlines);
+        let log_message_parser = LogMessageParser::new(current_text.clone()).json_format().format_config_rules();
+        let formatted_text = log_message_parser.get_text();
+        let mut cleaned_text_with_newlines = formatted_text.to_string(); // Preserve line breaks
+        cleaned_text_with_newlines = cleaned_text_with_newlines.replace("<", "&lt;"); 
+        cleaned_text_with_newlines= cleaned_text_with_newlines.replace(">", "&gt;"); 
+
+        log!("Formatted text: {:?}", formatted_text);
 
         // Store original text for change detection
-        element.set_attribute("data-original-text", &current_text)?;
-        element.set_attribute("data-formatted-text", &cleaned_text_with_newlines)?;
+        //element.set_attribute("data-original-text", &current_text)?;
+        //element.set_attribute("data-formatted-text", &formatted_text)?;
 
         // Display formatted log without blocking updates
         if let Some(target) = document.query_selector(".detailsActionsScroll.ii-outer").ok().flatten() {
-            target.set_inner_html(&format!("<pre>{}</pre>", cleaned_text_with_newlines));
+            // target.set_inner_html(&format!(
+            //     "<div class=\"detailsActionsScroll details-log-message ng-binding\">{}</div>",
+            //     &cleaned_text_with_newlines
+            // ));   
+            target.set_inner_html(&format!("{}", &cleaned_text_with_newlines));
         } else {
             log!("Target for formatted log not found");
         }
     } else {
         log!("Log message div not found");
     }
-
+    }
     Ok(())
 }
 
@@ -101,6 +111,5 @@ fn get_document() -> Result<Document, JsValue> {
     let document = window.document().ok_or_else(|| JsValue::from_str("Failed to get document"))?;
     Ok(document)
 }
-
 
 
