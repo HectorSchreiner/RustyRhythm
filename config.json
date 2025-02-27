@@ -8,7 +8,7 @@
     {
       "rule_type": "regex",
       "pattern": "\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b",
-      "style": "color:white;font-weight:bold;"
+      "style": "color:white;"
     },
     {
       "rule_type": "regex",
@@ -49,6 +49,16 @@
       "rule_type": "exact",
       "pattern": "bytes 0",
       "style": "color:red;font-weight:bold;"
+    },
+    {
+      "rule_type": "regex",
+      "pattern": "(?i)(User|Domain): (\\w+)",
+      "style": "color:white;"
+    },
+    {
+      "rule_type": "regex",
+      "pattern": "(?<=Name='TargetUserName'&gt;)(\\w+)(?=&lt;)",
+      "style": "color:white;"
     }
   ],
   "deletion_rules": [
@@ -63,8 +73,11 @@
     {
       "rule_type": "exact",
       "pattern": "&lt;/Data&gt;&lt;Data&gt;"
-    }
-    
+    },
+    {
+      "rule_type": "exact",
+      "pattern": "&lt;/Keywords&gt;&lt;Keywords&gt;"
+    }    
   ],
   "change_rules": [
     {
