@@ -1,5 +1,6 @@
 use js_sys::Promise;
 use regex::Regex;
+use wasm_bindgen::JsValue;
 use std::time::Duration;
 use wasm_bindgen_futures::JsFuture;
 use web_sys::{window, Document};
@@ -25,18 +26,10 @@ macro_rules! log {
     }
 }
 
-#[allow(dead_code)]
-pub fn get_document() -> Document {
-    let window = window().unwrap_or_else(|| {
-        log!("no window found");
-        panic!()
-    });
-    let document: web_sys::Document = window.document().unwrap_or_else(|| {
-        log!("no document found");
-        panic!()
-    });
-
-    return document;
+pub fn get_document() -> Result<Document, JsValue> {
+    let window = web_sys::window().ok_or_else(|| JsValue::from_str("Failed to get window"))?;
+    let document = window.document().ok_or_else(|| JsValue::from_str("Failed to get document"))?;
+    Ok(document)
 }
 
 pub fn remove_quotes(input: &str) -> String {
