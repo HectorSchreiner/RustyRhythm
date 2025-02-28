@@ -6,6 +6,7 @@ use std::marker::PhantomData;
 
 use crate::{config::Config, util::get_document};
 
+// Holds the state for the logmessage parser, to ensure json format comes before the highlight rules!
 pub struct Formatted;
 pub struct Unformatted;
 
