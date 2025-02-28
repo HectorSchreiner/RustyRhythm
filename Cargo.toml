@@ -30,6 +30,7 @@ features = [
     "MutationObserverInit",
     "KeyboardEvent",
     "NodeList",
+    "DomTokenList",
 ]
 
 
