@@ -164,12 +164,12 @@ pub fn parse_text() -> Result<(), JsValue> {
 
             // Try to find the target element with either class
             if let Some(target) = document.query_selector(".detailsActionsScroll.ii-outer").ok().flatten()
-                .or_else(|| document.query_selector(".detailsActionsScroll.customclass").ok().flatten()) {
+                .or_else(|| document.query_selector(".detailsActionsScroll.hectorsswaggycustomclass").ok().flatten()) {
                 
                 if let Ok(target) = target.dyn_into::<HtmlElement>() {
                     // Remove the .ii-outer class and add the custom class
                     target.class_list().remove_1("ii-outer").unwrap();
-                    target.class_list().add_1("customclass").unwrap();
+                    target.class_list().add_1("hectorsswaggycustomclass").unwrap();
                     log!("Updated class to customclass");
 
                     // Change the content inside the div
