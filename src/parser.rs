@@ -1,8 +1,10 @@
 use regex::Regex;
 use serde_json::Value;
+use wasm_bindgen::{prelude::wasm_bindgen, JsCast, JsValue};
+use web_sys::HtmlElement;
 use std::marker::PhantomData;
 
-use crate::config::Config;
+use crate::{config::Config, util::get_document};
 
 pub struct Formatted;
 pub struct Unformatted;
@@ -98,7 +100,7 @@ impl LogMessageParser<Formatted> {
         let text_field = &mut self.text_field;
 
         for rule in &self.config.deletion_rules {
-            let empty = " | ";
+            let empty = ", ";
             match rule.rule_type.as_str() {
                 "exact" => {
                     *text_field = text_field.replace(&rule.pattern, empty);
@@ -131,4 +133,54 @@ impl LogMessageParser<Formatted> {
             }
         }
     }
+}
+
+#[wasm_bindgen]
+pub fn parse_text() -> Result<(), JsValue> {
+    let document = get_document()?;
+    
+    let selector = ".detailsActionsScroll.details-log-message.ng-binding";
+    
+    if let Some(element) = document.query_selector(selector).ok().flatten() {
+        log!("{:?}", element);
+        log!("Processing log...");
+
+        let current_text = element.text_content();
+        if let Some(current_text) = element.text_content() {
+
+            // Check if already formatted, and don't reformat
+            if let Some(prev_text) = element.get_attribute("data-original-text") {
+                if prev_text == current_text {
+                    log!("Skipping formatting: Log content unchanged.");
+                    return Ok(());
+                }
+            }
+        
+            // Parse and format log message
+            let log_message_parser = LogMessageParser::new(current_text.clone()).json_format().format_config_rules();
+            let formatted_text = log_message_parser.get_text();
+            log!("Cleaned text{}", formatted_text);
+
+            // Try to find the target element with either class
+            if let Some(target) = document.query_selector(".detailsActionsScroll.ii-outer").ok().flatten()
+                .or_else(|| document.query_selector(".detailsActionsScroll.customclass").ok().flatten()) {
+                
+                if let Ok(target) = target.dyn_into::<HtmlElement>() {
+                    // Remove the .ii-outer class and add the custom class
+                    target.class_list().remove_1("ii-outer").unwrap();
+                    target.class_list().add_1("customclass").unwrap();
+                    log!("Updated class to customclass");
+
+                    // Change the content inside the div
+                    target.set_inner_html(&format!("{}", &formatted_text));
+                    log!("Changed content inside the div");
+                }
+            } else {
+                log!("Target for formatted log not found");
+            }
+        } else {
+            log!("Log message div not found");
+        }
+    }
+    Ok(())
 }
