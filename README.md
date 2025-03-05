@@ -41,20 +41,22 @@ Once compiled, your extension files will be available in the `pkg` folder. This 
 4. Toggle features on/off from the extension dropdown menu.
 
 # ✨ Features
+**Completed:**
 - [x] **Highlighting:** Automatically highlights important data like usernames and IP-Addresses.
 - [x] **Custom Deletion and Replacement Rules:** Delete certain patterns and words in the alarm text.
 - [x] **JSON Reformatting:** Reformats Json fields in the alarmtext so it looks more visually appealing.
 - [x] **Config file:** Configure the extension with an easy to configure `config.json`
+
+**Ongoing:**
+- [ ] **On DOM Change:** Reload when the DOM changes
+
+**Future:**
 - [ ] **ON/OFF Toggle Keyboard Shortcut:** (*Planned feature!*)
 - [ ] **Popup.html:** Nicer User Interface. (*Planned feature!*)
 - [ ] **User Customization:** The user should be able to customize formatting, color, highligtwords... (*Planned feature!*)
 - [ ] **Performance Improvement:** Fix performance issues
 - [ ] **Web Workers:** Make it multithreaded!!!
 - [ ] **Change Box Name:** Change the name "Inferred Identity" into something cooler
-
-**Ongoing:**
-- [ ] **On DOM Change:** Reload when the DOM changes
-
 
 
 # Config Example
