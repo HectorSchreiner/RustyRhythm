@@ -50,13 +50,13 @@ Once compiled, your extension files will be available in the `pkg` folder. This 
 **Ongoing:**
 - [ ] **On DOM Change:** Reload when the DOM changes
 
-**Future:**
-- [ ] **ON/OFF Toggle Keyboard Shortcut:** (*Planned feature!*)
-- [ ] **Popup.html:** Nicer User Interface. (*Planned feature!*)
-- [ ] **User Customization:** The user should be able to customize formatting, color, highligtwords... (*Planned feature!*)
-- [ ] **Performance Improvement:** Fix performance issues
-- [ ] **Web Workers:** Make it multithreaded!!!
-- [ ] **Change Box Name:** Change the name "Inferred Identity" into something cooler
+**Planned Features:**
+- [ ] **ON/OFF Toggle Keyboard Shortcut:** (**Nice to have**)
+- [ ] **Popup.html:** Nicer User Interface. (**Need to have**)
+- [ ] **User Customization:** The user should be able to customize formatting, color, highligtwords... (**Nice to have**)
+- [ ] **Performance Improvement:** Fix performance issues (**Need to have**)
+- [ ] **Web Workers:** Make it multithreaded!!! (**Nice to have**)
+- [ ] **Change Box Name:** Change the name "Inferred Identity" into something cooler (**Need to have**)
 
 
 # Config Example
