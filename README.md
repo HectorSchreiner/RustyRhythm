@@ -34,12 +34,6 @@ sh build.sh
 ```
 Once compiled, your extension files will be available in the `pkg` folder. This is the folder you need to import into Chrome.
 
-# How to Use
-1. Install the extension using the steps above.
-2. The extension will automatically enhance the LogMessage box in the WebConsole.
-3. Configure the features via the config file.
-4. Toggle features on/off from the extension dropdown menu.
-
 # ✨ Features
 **Completed:**
 - [x] **Highlighting:** Automatically highlights important data like usernames and IP-Addresses.
