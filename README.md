@@ -51,7 +51,6 @@ Once compiled, your extension files will be available in the `pkg` folder. This 
 - [ ] **On DOM Change:** Reload when the DOM changes
 
 **Planned Features:**
-- [ ] **ON/OFF Toggle Keyboard Shortcut:** (**Nice to have**)
 - [ ] **Popup.html:** Nicer User Interface. (**Need to have**)
 - [ ] **User Customization:** The user should be able to customize formatting, color, highligtwords... (**Nice to have**)
 - [ ] **Performance Improvement:** Fix performance issues (**Need to have**)
