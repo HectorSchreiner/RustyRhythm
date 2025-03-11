@@ -1,5 +1,5 @@
 [package]
-name = "amazing-extension"
+name = "RustyRythm"
 version = "0.1.0"
 authors = ["Hector <agenthector007@gmail.com>"]
 edition = "2018"

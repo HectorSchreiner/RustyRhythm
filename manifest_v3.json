@@ -1,7 +1,7 @@
 {
-    "name" : "amazing-extension",
+    "name" : "RustyRythm",
     "version" : "1.0",
-    "description" : "amazing-extension",
+    "description" : "LogMessage Formatter for LogRythm",
     "permissions": [],
     "content_scripts": [
         {
