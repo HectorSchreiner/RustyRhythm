@@ -32,7 +32,7 @@
     },
     {
       "rule_type": "regex",
-      "pattern": "\\b(pingcastle|rubeus|mimikatz|powersploit|empire|cobaltstrike|bloodhound|kerberoast|hashcat|responder|impacket|metasploit)\\b",
+      "pattern": "(?i:pingcastle|rubeus|mimikatz|powersploit|empire|cobaltstrike|bloodhound|kerberoast|hashcat|responder|impacket|metasploit|wannacry|rubeus)",
       "style": "color:red;font-weight:bold;"
     },
     {
@@ -68,7 +68,7 @@
     },
     {
       "rule_type": "regex",
-      "pattern": "\\w+=\\s\\|"
+      "pattern": "\\b\\w+\\=\\s\\b"
     },
     {
       "rule_type": "exact",

@@ -9,7 +9,7 @@ mod config;
 mod parser;
 mod ui;
 
-use ui::*;
+use ui::replace_ugly_name;
 use parser::*;
 use crate::util::get_document;
 
@@ -54,6 +54,10 @@ pub fn register_dom_listener() -> Result<(), JsValue> {
             log!("Log content changed - Parsing...");
             if let Err(e) = parse_text() {
                 log!("Error formatting logs: {:?}", e);
+            }
+
+            if let Err(e) = replace_ugly_name() {
+                log!("Error replacing the name: {:?}", e);
             }
         }) as Box<dyn FnMut(Vec<MutationRecord>, MutationObserver)>);
 

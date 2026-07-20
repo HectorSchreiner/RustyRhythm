@@ -21,7 +21,7 @@ The extension can be installed under `releases` (TODO!). But if you want to comp
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-🔗[Rust Installation Guide](https://www.rust-lang.org/tools/install)
+[Rust Installation Guide](https://www.rust-lang.org/tools/install)
 
 Then, install the required tools:
 ```sh
@@ -34,7 +34,7 @@ Instead of using `cargo build`, run the provided build script:
 ```
 sh build.sh
 ```
-Once compiled, your extension files will be available in the `pkg` folder. This is the folder you need to import into Chrome.
+Once compiled, your extension files will be available in the `pkg/` folder. This is the folder you need to import into Chrome.
 
 # Features
 **Completed:**
@@ -42,16 +42,16 @@ Once compiled, your extension files will be available in the `pkg` folder. This 
 - [x] **Custom Deletion and Replacement Rules:** Delete certain patterns and words in the alarm text.
 - [x] **JSON Reformatting:** Reformats Json fields in the alarmtext so it looks more visually appealing.
 - [x] **Config file:** Configure the extension with an easy to configure `config.json`
+- [x] **On DOM Change:** Reload when the DOM changes
+- [x] **Change Box Name:** Change the name "Inferred Identity" into something cooler
 
 **Ongoing:**
-- [ ] **On DOM Change:** Reload when the DOM changes
 
 **Planned Features:**
 - [ ] **Popup.html:** Nicer User Interface. (**Need to have**)
 - [ ] **User Customization:** The user should be able to customize formatting, color, highligtwords... (**Nice to have**)
 - [ ] **Performance Improvement:** Fix performance issues (**Need to have**)
 - [ ] **Web Workers:** Make it multithreaded!!! (**Nice to have**)
-- [ ] **Change Box Name:** Change the name "Inferred Identity" into something cooler (**Need to have**)
 
 
 # Config Example

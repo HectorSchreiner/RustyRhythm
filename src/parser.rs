@@ -33,7 +33,7 @@ impl<State> LogMessageParser<State> {
 
 impl LogMessageParser<Unformatted> {
     pub fn json_format(mut self) -> LogMessageParser<Formatted> {
-        let re_whitespace = Regex::new(r"\s").unwrap(); // Matches any whitespace (spaces, newlines, tabs)
+        let re_whitespace = Regex::new(r"\s").unwrap(); 
         self.text_field = re_whitespace
             .replace_all(&self.text_field.trim(), " ")
             .into_owned();
@@ -101,7 +101,7 @@ impl LogMessageParser<Formatted> {
         let text_field = &mut self.text_field;
 
         for rule in &self.config.deletion_rules {
-            let empty = ", ";
+            let empty = "";
             match rule.rule_type.as_str() {
                 "exact" => {
                     *text_field = text_field.replace(&rule.pattern, empty);

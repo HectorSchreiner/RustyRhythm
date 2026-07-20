@@ -7,12 +7,12 @@
         {
             "matches": ["<all_urls>"],
             "js": [
-                "amazing_extension.js", "run_wasm.js"
+                "RustyRythm.js", "run_wasm.js"
             ]
         }
     ],
     "web_accessible_resources": [{
-        "resources": ["amazing_extension_bg.wasm"],
+        "resources": ["RustyRythm_bg.wasm"],
         "matches": ["<all_urls>"]
     }],
     "manifest_version": 3
