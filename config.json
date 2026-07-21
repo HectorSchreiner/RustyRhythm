@@ -59,6 +59,16 @@
       "rule_type": "regex",
       "pattern": "(?<=Name='TargetUserName'&gt;)(\\w+)(?=&lt;)",
       "style": "color:white;"
+    },
+    {
+      "rule_type": "regex",
+      "pattern": "(?i:USERKEY|USER)=([^\\s]+)",
+      "style": "font-weight:bold;"
+    },
+    {
+      "rule_type": "exact",
+      "pattern": "duration=0",
+      "style": "font-weight:bold;"
     }
   ],
   "deletion_rules": [
@@ -80,15 +90,5 @@
     }    
   ],
   "change_rules": [
-    {
-      "rule_type": "exact",
-      "pattern": "    ",
-      "replacement": "<br><br>"
-    },
-    {
-      "rule_type": "exact",
-      "pattern": "  ",
-      "replacement": "<br>"
-    }
   ]
 }

@@ -33,11 +33,7 @@ impl<State> LogMessageParser<State> {
 
 impl LogMessageParser<Unformatted> {
     pub fn json_format(mut self) -> LogMessageParser<Formatted> {
-        let re_whitespace = Regex::new(r"\s").unwrap(); 
-        self.text_field = re_whitespace
-            .replace_all(&self.text_field.trim(), " ")
-            .into_owned();
-
+        self.text_field = self.text_field.to_string();
         let re = Regex::new(r"\{.*?\}").unwrap(); // Matches JSON-like content within {}
 
         self.text_field = re
@@ -173,7 +169,12 @@ pub fn parse_text() -> Result<(), JsValue> {
                     log!("Updated class to customclass");
 
                     // Change the content inside the div
-                    target.set_inner_html(&format!("{}", &formatted_text));
+                    target.set_inner_html(&format!(
+                        r#"<div class="details-log-message ng-binding">{}</div>"#,
+                        formatted_text
+                    ));
+
+
                     log!("Changed content inside the div");
                 }
             } else {
