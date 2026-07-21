@@ -1,7 +1,7 @@
 # LogRhythm LogMessage Formatter
 !!!OBS: This project will no longer be updated on this Github!!!
 
-RustyRhythm is a Chrome extension that enhances LogRhythm's WebConsole platform by reformatting log messages into a more readable and visually appealing format. It highlights important text — such as **usernames and IP addresses** — and restructures the log messages for improved clarity.
+RustyRhythm is a Chrome extension that enhances LogRhythm's WebConsole platform by reformatting log messages into a more readable and visually appealing format. It highlights important text such as **usernames and IP addresses** and restructures the log messages for improved clarity.
 
 **Built with:** Rust + WebAssembly
 
